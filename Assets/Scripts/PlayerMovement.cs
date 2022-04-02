@@ -9,32 +9,32 @@ public class PlayerMovement : MonoBehaviour {
     
     List<Vector2> DirectionVectors;
 
-    int currentDirection = 0;
-
     void Awake() {
         rigidBody = GetComponent<Rigidbody2D>();
 
         //turn off default rigidBody Gravity;
         rigidBody.gravityScale = 0;
-
-
-        DirectionVectors = new List<Vector2> {new Vector2(0,1), new Vector2(1,0), new Vector2(0,-1), new Vector2(-1,0)};
-
     }
 
     void Update() {
         ApplyHorizontalMovement();
         ApplyVerticalMovement();
 
-        if(Input.GetKeyDown(KeyCode.LeftShift)) {
-            ChangeGravity();
+        if(Input.GetKeyDown(KeyCode.LeftArrow)) {
+            ChangeGravity(-90);
+        }
+        if(Input.GetKeyDown(KeyCode.RightArrow)) {
+            ChangeGravity(90);
+        }
+        if(Input.GetKeyDown(KeyCode.UpArrow)) {
+            ChangeGravity(180);
         }
     }
 
     void FixedUpdate() {
         //Apply Gravity
-        Vector2 direction = DirectionVectors[currentDirection];
-        rigidBody.AddForce(direction * Physics.gravity.y * rigidBody.mass);
+        
+        rigidBody.AddForce(transform.up * Physics.gravity.y * rigidBody.mass);
     }
 
     void ApplyHorizontalMovement() {
@@ -53,9 +53,9 @@ public class PlayerMovement : MonoBehaviour {
         
     }
 
-    void ChangeGravity() {
-        currentDirection = (currentDirection + 1) % DirectionVectors.Count;
-        transform.Rotate(0, 0, -90);
+    void ChangeGravity(float angle) {
+        transform.Rotate(0, 0, angle);
+        rigidBody.velocity = Vector2.zero;
     }
 
 }

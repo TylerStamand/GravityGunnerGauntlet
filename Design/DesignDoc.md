@@ -41,6 +41,19 @@ When manipulating gravity, it only affects you. Most rooms are enclosed as to no
 
 To jump, shoot to push the player up. (ie. JetpackJoyRide)
 
+
+
+---
+
+## Design Ideas
+
+- **Slam**
+    - Player can press a key to fall down fast
+    - Hurt enemies
+        - Damage can depend on how far you fall
+    - Can possibly break blocks
+    - Make manuvering fun 
+
 ---
 
 ## Design Questions
@@ -50,6 +63,7 @@ To jump, shoot to push the player up. (ie. JetpackJoyRide)
         - Might be disorientienting, loss sense of direction
     - If the camera doesn't move with the player, controls may get wierd quick
         - For example if gravity is going to the left, should the move left key move the player up?
+    - Should the player only be able to rotate left and right or also able to rotate 180?
 
 - **How should the game flow work?**
     - Main menu
@@ -80,3 +94,5 @@ To jump, shoot to push the player up. (ie. JetpackJoyRide)
 - **Should the player change in any way throughout the game?**
     - Better stats
     - Different weapons
+
+
