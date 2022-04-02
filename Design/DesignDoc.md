@@ -8,7 +8,7 @@ Sent into the facility to fend off the advesaries.
 ---
 
 ## Boss
-Electic based, using the power core to magnetize and electrocute the platforms. 
+Electric based, using the power core to magnetize and electrocute the platforms. 
 
 ---
 
@@ -44,10 +44,39 @@ To jump, shoot to push the player up. (ie. JetpackJoyRide)
 ---
 
 ## Design Questions
-- How should gravity be switched as to not be confusing?
+- **How should gravity be switched as to not be confusing?**
     - For example, should the camera rotate with the player?
         - This would make left/right controls less confusing.  
         - Might be disorientienting, loss sense of direction
     - If the camera doesn't move with the player, controls may get wierd quick
         - For example if gravity is going to the left, should the move left key move the player up?
 
+- **How should the game flow work?**
+    - Main menu
+        - Start
+        - Level Select?
+    - What happens when a player dies?
+        - Do you restart the level?
+        - Do you restart the game?
+    - Do you unlock levels when you complete them. 
+        - For example, beat level 1 and quit game, is level 1 still completed?
+    - What determines when you beat a level
+        - Is there a point you have to hit?
+        - Is there an enemy you have to kill?
+
+
+- **Assuming player has health**
+    - Should health be an amount of HP, or should it be number of hits?
+
+- **Are there pickups through a level?**
+    - Ex. Health
+
+- **How should enemies behave?**
+    - Gravity
+    - Types?
+        - melee
+        - ranged
+
+- **Should the player change in any way throughout the game?**
+    - Better stats
+    - Different weapons
