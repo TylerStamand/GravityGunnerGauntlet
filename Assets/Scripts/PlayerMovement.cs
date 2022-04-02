@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
@@ -5,20 +6,41 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] float verticalMult = 700;
 
     Rigidbody2D rigidBody;
+    
+    List<Vector2> DirectionVectors;
 
-    void Start() {
+    int currentDirection = 0;
+
+    void Awake() {
         rigidBody = GetComponent<Rigidbody2D>();
+
+        //turn off default rigidBody Gravity;
+        rigidBody.gravityScale = 0;
+
+
+        DirectionVectors = new List<Vector2> {new Vector2(0,1), new Vector2(1,0), new Vector2(0,-1), new Vector2(-1,0)};
+
     }
 
     void Update() {
         ApplyHorizontalMovement();
         ApplyVerticalMovement();
+
+        if(Input.GetKeyDown(KeyCode.LeftShift)) {
+            ChangeGravity();
+        }
+    }
+
+    void FixedUpdate() {
+        //Apply Gravity
+        Vector2 direction = DirectionVectors[currentDirection];
+        rigidBody.AddForce(direction * Physics.gravity.y * rigidBody.mass);
     }
 
     void ApplyHorizontalMovement() {
         float horizontal = Input.GetAxis("Horizontal");
-        float deltaX = horizontal * horizontalMoveSpeed * Time.deltaTime;
-        Vector3 newPosition = new Vector3(transform.position.x + deltaX, transform.position.y, transform.position.z);
+        Vector3 delta = horizontal * horizontalMoveSpeed * Time.deltaTime * transform.right;
+        Vector3 newPosition = transform.position + delta;
        
         transform.position = newPosition;
     }
@@ -30,4 +52,10 @@ public class PlayerMovement : MonoBehaviour {
         }
         
     }
+
+    void ChangeGravity() {
+        currentDirection = (currentDirection + 1) % DirectionVectors.Count;
+        transform.Rotate(0, 0, -90);
+    }
+
 }
