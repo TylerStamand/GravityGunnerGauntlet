@@ -33,3 +33,5 @@ You can only shoot downwards. You can manipulate gravity in 4 directions.
 
 To shoot you need to change gravity so your feet are facing the enemy.
 When manipulating gravity, it only affects you. Most rooms are enclosed as to not let the player fly into the abyss.
+
+To jump, shoot to push the player up. (ie. JetpackJoyRide)
