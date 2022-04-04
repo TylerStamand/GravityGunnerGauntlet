@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour {
 
         //turn off default rigidBody Gravity;
         rigidBody.gravityScale = 0;
+
+        //set initial gravity to down
         ChangeGravity(GravityState.Down);
     }
 
@@ -33,24 +35,12 @@ public class PlayerMovement : MonoBehaviour {
 
     void Update() {
         
-        // if(Input.GetKeyDown(KeyCode.LeftArrow)) {
-        //     ChangeGravity(-90);
-        // }
-        // if(Input.GetKeyDown(KeyCode.RightArrow)) {
-        //     ChangeGravity(90);
-        // }
-        // if(Input.GetKeyDown(KeyCode.UpArrow)) {
-        //     ChangeGravity(180);
-        // }
-        
-        
        ApplySideMovement();
 
     }
 
     void FixedUpdate() {
         //Apply Gravity
-        
         rigidBody.AddForce(transform.up * Physics.gravity.y * rigidBody.mass);
     }
 
