@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,12 +12,12 @@ public class PlayerMovement : MonoBehaviour {
     List<Vector2> DirectionVectors;
     GravityState gravityState;
     
+    public event Action OnFireEvent;
 
     void Awake() {
         rigidBody = GetComponent<Rigidbody2D>();
         playerControls = new PlayerControls();
         
-
         //turn off default rigidBody Gravity;
         rigidBody.gravityScale = 0;
 
@@ -34,7 +35,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void Update() {
-        
+
        ApplySideMovement();
 
     }
@@ -72,6 +73,7 @@ public class PlayerMovement : MonoBehaviour {
    
 
     void OnSwitchGravity(InputAction.CallbackContext context) {
+        Debug.Log("Update");
         switch(context.ReadValue<Vector2>().x) {
             case 1 :
                 ChangeGravity(GravityState.Right);
@@ -97,6 +99,8 @@ public class PlayerMovement : MonoBehaviour {
     
     void OnFire(InputAction.CallbackContext context) {
         rigidBody.AddForce(transform.up * verticalMult, ForceMode2D.Impulse);
+        Debug.Log("Fire");
+        //OnFireEvent?.Invoke();
     }
 
 
