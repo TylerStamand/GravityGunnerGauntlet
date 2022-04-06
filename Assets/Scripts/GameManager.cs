@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
     public int score = 0;
-    public int health = 100;
+    public int health = 3;
     public bool finalWave = false;
 
     // Allows us to refer to the game manager as an instance
@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     // If there is another game manager destroy it
     private void Awake()
     {
-        health = 100;
+        health = 3;
         score = 0;
 
         if (_instance != null && _instance != this)
@@ -39,15 +39,8 @@ public class GameManager : MonoBehaviour
     // Used to change level
     public void goToLevel(int levelNumber)
     {
-        if(levelNumber == 1)
-        {
-            // Turn the cursor on
-            Cursor.visible = false;
-
-            // Unlock the cursor from the middle of the screen
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-        GameManager.Instance.addHealth(100);
+        
+        GameManager.Instance.addHealth(3);
         SceneManager.LoadScene(levelNumber);
     }
 
@@ -58,12 +51,6 @@ public class GameManager : MonoBehaviour
 
         if (health <= 0)
         {
-            // Turn the cursor on
-            Cursor.visible = true;
-
-            // Unlock the cursor from the middle of the screen
-            Cursor.lockState = CursorLockMode.None;
-
             goToLevel(3);
         }
     }
@@ -73,35 +60,10 @@ public class GameManager : MonoBehaviour
         // Add the value from health
         health = health + value;
 
-        if (health > 100)
+        if (health > 3)
         {
-            health = 100;
+            health = 3;
         }
     }
 
-    public void Update()
-    {
-        //If final wave reached
-        if (finalWave)
-        {
-            int count = GameObject.FindGameObjectsWithTag("Enemy").Length;
-
-            if (count == 0)
-            {
-                // Turn off the check to see if there are enemys in the scene
-                // If this is left on (true) it will cause an infinate loop
-                // Which keeps re-loading the scene.
-                finalWave = false;
-
-                // Turn the cursor on
-                Cursor.visible = true;
-
-                // Unlock the cursor from the middle of the screen
-                Cursor.lockState = CursorLockMode.None;
-
-                // Move to the victory level
-                goToLevel(2);
-            }
-        }
-    }
 }
