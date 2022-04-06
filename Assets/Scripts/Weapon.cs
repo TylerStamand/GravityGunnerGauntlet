@@ -24,7 +24,8 @@ public class Weapon : MonoBehaviour
             
             Projectile shot = Instantiate(projectile, transform.position, transform.rotation);
         
-        } 
+        }
+        coolDown = 0;
     }
     
 }

@@ -18,7 +18,6 @@ public class Projectile : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision) {
         //check if object has IDamageable
-        Debug.Log("Collided with" + collision.gameObject.name);
         IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
         if(damageable != null) {
             damageable.TakeDamage(damage);

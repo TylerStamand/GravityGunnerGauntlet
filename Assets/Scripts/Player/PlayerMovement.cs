@@ -5,12 +5,18 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour {
     [SerializeField] float moveSpeed = 3;
-    [SerializeField] float verticalMult = 5;
+    [SerializeField] float groundBoost = 5;
+    [SerializeField] float shootBoost = 2;
+    [SerializeField] Collider2D groundCollider;
+    [SerializeField] LayerMask terrainLayer;
 
     Rigidbody2D rigidBody;
     PlayerControls playerControls;
     List<Vector2> DirectionVectors;
     GravityState gravityState;
+
+
+    bool isGrounded;
     
     public event Action OnFireEvent;
 
@@ -36,6 +42,15 @@ public class PlayerMovement : MonoBehaviour {
 
     void Update() {
 
+        if(groundCollider != null) {
+            if(groundCollider.IsTouchingLayers(terrainLayer)) {
+                isGrounded = true;
+            }
+            else {
+                isGrounded = false;
+            }
+        }
+
        ApplySideMovement();
 
     }
@@ -47,6 +62,12 @@ public class PlayerMovement : MonoBehaviour {
 
     void OnDisable() {
         playerControls.Disable();
+    }
+
+    void OnCollisionEnter2D(Collision2D collision) {
+        if(collision.gameObject.layer == terrainLayer) {
+            isGrounded = true;
+        }
     }
 
     void ApplySideMovement() {
@@ -97,9 +118,17 @@ public class PlayerMovement : MonoBehaviour {
     }
     
     void OnFire(InputAction.CallbackContext context) {
-        rigidBody.AddForce(transform.up * verticalMult, ForceMode2D.Impulse);
+        if(isGrounded) {
+            rigidBody.AddForce(transform.up * groundBoost, ForceMode2D.Impulse);
+        }
+        else {
+            rigidBody.AddForce(transform.up * shootBoost, ForceMode2D.Impulse);
+
+            //I dont like how the fire event is only called sometimes, maybe name it something different
+            OnFireEvent?.Invoke();
+        }
         Debug.Log("Fire");
-        OnFireEvent?.Invoke();
+        
     }
 
 
