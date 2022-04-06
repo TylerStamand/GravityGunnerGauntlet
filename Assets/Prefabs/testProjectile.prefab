@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 6982812381358039573}
   - component: {fileID: 5802283805359950809}
   - component: {fileID: 5743741048651761380}
-  m_Layer: 0
+  - component: {fileID: -5667036928794485173}
+  m_Layer: 8
   m_Name: testProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,3 +116,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  moveSpeed: 10
+--- !u!50 &-5667036928794485173
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140464057049573468}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

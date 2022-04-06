@@ -73,7 +73,6 @@ public class PlayerMovement : MonoBehaviour {
    
 
     void OnSwitchGravity(InputAction.CallbackContext context) {
-        Debug.Log("Update");
         switch(context.ReadValue<Vector2>().x) {
             case 1 :
                 ChangeGravity(GravityState.Right);
@@ -100,7 +99,7 @@ public class PlayerMovement : MonoBehaviour {
     void OnFire(InputAction.CallbackContext context) {
         rigidBody.AddForce(transform.up * verticalMult, ForceMode2D.Impulse);
         Debug.Log("Fire");
-        //OnFireEvent?.Invoke();
+        OnFireEvent?.Invoke();
     }
 
 

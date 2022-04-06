@@ -5,16 +5,23 @@ public class PlayerUnit : MonoBehaviour, IDamageable {
 
     [SerializeField] int maxHealth = 3;
     [SerializeField] Weapon weapon;
-    [SerializeField] PlayerMovement playerMovement;
+    
 
     public event Action<int> OnHealthChange;
+
+    PlayerMovement playerMovement;
 
     int currentHealth;
 
     void Awake() {
-        ChangeHealth(maxHealth);
+        playerMovement = GetComponent<PlayerMovement>();
+        if(playerMovement != null) {
+            playerMovement.OnFireEvent += Shoot;
+        }
 
-        playerMovement.OnFireEvent += Shoot;
+
+        ChangeHealth(maxHealth);
+        
     }
 
     public void TakeDamage(int damage) {
