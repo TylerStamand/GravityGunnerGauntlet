@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] Collider2D groundCollider;
     [SerializeField] LayerMask terrainLayer;
 
+    Animator animator;
     Rigidbody2D rigidBody;
     PlayerControls playerControls;
     List<Vector2> DirectionVectors;
@@ -23,6 +24,7 @@ public class PlayerMovement : MonoBehaviour {
     void Awake() {
         rigidBody = GetComponent<Rigidbody2D>();
         playerControls = new PlayerControls();
+        animator = GetComponent<Animator>();
         
         //turn off default rigidBody Gravity;
         rigidBody.gravityScale = 0;
@@ -38,6 +40,7 @@ public class PlayerMovement : MonoBehaviour {
     void Start() {
         playerControls.Player.SwitchGravity.performed += OnSwitchGravity;
         playerControls.Player.Fire.performed += OnFire;
+        
     }
 
     void Update() {
@@ -50,6 +53,14 @@ public class PlayerMovement : MonoBehaviour {
                 isGrounded = false;
             }
         }
+
+        if((playerControls.Player.XAxisMove.IsPressed() || playerControls.Player.YAxisMove.IsPressed()) && isGrounded) {
+            animator.SetBool("walking", true);
+        }
+        else {
+            animator.SetBool("walking", false);
+        }
+       
 
        ApplySideMovement();
 
