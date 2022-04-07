@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour {
 
     Animator animator;
     Rigidbody2D rigidBody;
+    SpriteRenderer spriteRenderer;
     PlayerControls playerControls;
     List<Vector2> DirectionVectors;
     GravityState gravityState;
@@ -25,10 +26,10 @@ public class PlayerMovement : MonoBehaviour {
         rigidBody = GetComponent<Rigidbody2D>();
         playerControls = new PlayerControls();
         animator = GetComponent<Animator>();
-        
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
         //turn off default rigidBody Gravity;
         rigidBody.gravityScale = 0;
-
         //set initial gravity to down
         ChangeGravity(GravityState.Down);
     }
@@ -45,24 +46,9 @@ public class PlayerMovement : MonoBehaviour {
 
     void Update() {
 
-        if(groundCollider != null) {
-            if(groundCollider.IsTouchingLayers(terrainLayer)) {
-                isGrounded = true;
-            }
-            else {
-                isGrounded = false;
-            }
-        }
+        CheckIfGrounded(); 
 
-        if((playerControls.Player.XAxisMove.IsPressed() || playerControls.Player.YAxisMove.IsPressed()) && isGrounded) {
-            animator.SetBool("walking", true);
-        }
-        else {
-            animator.SetBool("walking", false);
-        }
-       
-
-       ApplySideMovement();
+        ApplySideMovement();
 
     }
 
@@ -82,23 +68,55 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void ApplySideMovement() {
-        
+        float value = 0;
 
         if(gravityState == GravityState.Up || gravityState == GravityState.Down) {
-            float value = playerControls.Player.XAxisMove.ReadValue<float>();
-
+            value = playerControls.Player.XAxisMove.ReadValue<float>();
+            
             Vector3 delta = value * moveSpeed * Time.deltaTime * Vector2.right;
             Vector3 newPosition = transform.position + delta;
 
             transform.position = newPosition;
         }
         else {
-            float value = playerControls.Player.YAxisMove.ReadValue<float>();
+            value = playerControls.Player.YAxisMove.ReadValue<float>();
 
             Vector3 delta = value * moveSpeed * Time.deltaTime * Vector2.up;
             Vector3 newPosition = transform.position + delta;
 
             transform.position = newPosition;
+        }
+
+        //For flipping sprite based on direction
+        #region 
+        if (gravityState == GravityState.Right || gravityState == GravityState.Down) {
+            if (value > 0)
+            {
+                spriteRenderer.flipX = false;
+            }
+            else if (value < 0)
+            {
+                spriteRenderer.flipX = true;
+            }
+        } else {
+            if (value > 0)
+            {
+                spriteRenderer.flipX = true;
+            }
+            else if (value < 0)
+            {
+                spriteRenderer.flipX = false;
+            }
+        }
+
+        #endregion
+
+        if(value != 0) {
+            animator.SetBool("walking", true);
+        }
+        else
+        {
+            animator.SetBool("walking", false);
         }
     }
 
@@ -166,7 +184,20 @@ public class PlayerMovement : MonoBehaviour {
         rigidBody.velocity = Vector2.zero;
     }
 
+    void CheckIfGrounded() {
+        if (groundCollider != null)
+        {
+            if (groundCollider.IsTouchingLayers(terrainLayer))
+            {
+                isGrounded = true;
+            }
+            else
+            {
+                isGrounded = false;
+            }
+        }
 
+    }
 }
 
 public enum GravityState {
