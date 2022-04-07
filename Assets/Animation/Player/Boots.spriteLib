@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 36
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: idle
+    m_Hash: -601574123
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: animation_bootsGrav-2
+      m_Hash: 1963974962
+      m_Sprite: {fileID: 21300000, guid: 67b1422349c8aeb4c9c3949dd2518d28, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 21300000, guid: 108e53a45ac71fe4598f1c6d847f77b4, type: 3}
+    m_FromMain: 1
+    m_EntryOverrideCount: 1
+  - m_Name: walking
+    m_Hash: -1472183017
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: animation_bootsGrav-1
+      m_Hash: -335105912
+      m_Sprite: {fileID: 21300000, guid: e4c91da973a0b684bb169d2f158015bf, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 21300000, guid: 108e53a45ac71fe4598f1c6d847f77b4, type: 3}
+    - m_Name: animation_bootsGrav-2
+      m_Hash: 1963974962
+      m_Sprite: {fileID: 21300000, guid: 67b1422349c8aeb4c9c3949dd2518d28, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 21300000, guid: 637aaa0a3526241488ca26454d8cefc2, type: 3}
+    - m_Name: animation_bootsGrav-3
+      m_Hash: 34132388
+      m_Sprite: {fileID: 21300000, guid: e4f16c5de8f3a7240a76e75f47a1e875, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 21300000, guid: 4dc8df1d637c38146ba3eae9e467b470, type: 3}
+    - m_Name: animation_bootsGrav-4
+      m_Hash: -1670626297
+      m_Sprite: {fileID: 21300000, guid: 746c263d6a1ed6f489d27845dd945396, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 21300000, guid: 2a1c4fd5ab3dc4d479d10b8415b76625, type: 3}
+    m_FromMain: 1
+    m_EntryOverrideCount: 4
+  m_PrimaryLibraryGUID: 35d7d5ebcb1a1d845b99a2fbd096f696
