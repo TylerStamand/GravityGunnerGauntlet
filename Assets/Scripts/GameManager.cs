@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public int score = 0;
     public int health = 3;
-    public bool finalWave = false;
 
     // Allows us to refer to the game manager as an instance
     public static GameManager Instance
@@ -64,6 +63,11 @@ public class GameManager : MonoBehaviour
         {
             health = 3;
         }
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
 }
