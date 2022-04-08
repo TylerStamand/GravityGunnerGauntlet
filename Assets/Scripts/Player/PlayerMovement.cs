@@ -111,7 +111,7 @@ public class PlayerMovement : MonoBehaviour {
 
         #endregion
 
-        if(value != 0) {
+        if(value != 0 && isGrounded) {
             animator.SetBool("walking", true);
         }
         else
