@@ -47,12 +47,12 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 306
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: -1
+  spriteTessellationDetail: 0
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -103,11 +103,73 @@ TextureImporter:
   spriteSheet:
     serializedVersion: 2
     sprites: []
-    outline: []
+    outline:
+    - - {x: -78, y: 223}
+      - {x: -99, y: 203}
+      - {x: -103, y: 184}
+      - {x: -103, y: -57}
+      - {x: -59, y: -158}
+      - {x: 101, y: -158}
+      - {x: 104, y: -153}
+      - {x: 104, y: 163}
+      - {x: 65, y: 223}
+    - - {x: 81, y: -135}
+      - {x: 84, y: -134}
+      - {x: 84, y: -131}
+      - {x: 81, y: -130}
+      - {x: 79, y: -132}
+    - - {x: 62, y: -118}
+      - {x: 62, y: -120}
+      - {x: 66, y: -123}
+      - {x: 68, y: -123}
+      - {x: 70, y: -122}
+      - {x: 70, y: -120}
+      - {x: 68, y: -117}
+      - {x: 64, y: -116}
+    - - {x: 48, y: -107}
+      - {x: 48, y: -111}
+      - {x: 49, y: -114}
+      - {x: 53, y: -117}
+      - {x: 62, y: -117}
+      - {x: 62, y: -112}
+      - {x: 52, y: -107}
+    - - {x: 52, y: -100}
+      - {x: 55, y: -99}
+      - {x: 55, y: -96}
+      - {x: 52, y: -95}
+      - {x: 50, y: -97}
+    - - {x: 104, y: 26}
+      - {x: 106, y: 24}
+      - {x: 109, y: 25}
+      - {x: 109, y: 31}
+      - {x: 107, y: 33}
+      - {x: 104, y: 32}
+    - - {x: 75, y: 43}
+      - {x: 72, y: 40}
+      - {x: 72, y: 39}
+      - {x: 75, y: 36}
+      - {x: 79, y: 36}
+      - {x: 81, y: 38}
+      - {x: 81, y: 41}
+      - {x: 79, y: 43}
+    - - {x: 65, y: 39}
+      - {x: 67, y: 37}
+      - {x: 70, y: 38}
+      - {x: 70, y: 41}
+      - {x: 68, y: 43}
+      - {x: 65, y: 42}
+    - - {x: 83, y: 123}
+      - {x: 80, y: 122}
+      - {x: 80, y: 117}
+      - {x: 84, y: 112}
+      - {x: 86, y: 112}
+      - {x: 89, y: 115}
+      - {x: 88, y: 119}
+      - {x: 86, y: 123}
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []

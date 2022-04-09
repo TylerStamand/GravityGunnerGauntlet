@@ -16,7 +16,7 @@ public class Weapon : MonoBehaviour
     }
 
     void Update() {
-        coolDown += Time.deltaTime;
+        timeSinceLastShot += Time.deltaTime;
     }
 
     public void Shoot() {

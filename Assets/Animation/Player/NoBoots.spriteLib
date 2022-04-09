@@ -32,22 +32,22 @@ MonoBehaviour:
       m_Hash: -335105912
       m_Sprite: {fileID: 21300000, guid: e4c91da973a0b684bb169d2f158015bf, type: 3}
       m_FromMain: 1
-      m_SpriteOverride: {fileID: 21300000, guid: 18bfbdd81526e5a478523e08b5dd47b9, type: 3}
+      m_SpriteOverride: {fileID: 21300000, guid: 09b9b2956cfbc5f41964485997864e50, type: 3}
     - m_Name: animation_bootsGrav-2
       m_Hash: 1963974962
       m_Sprite: {fileID: 21300000, guid: 67b1422349c8aeb4c9c3949dd2518d28, type: 3}
       m_FromMain: 1
-      m_SpriteOverride: {fileID: 21300000, guid: 7bf086cb6f804fe49b59cda81226bd54, type: 3}
+      m_SpriteOverride: {fileID: 21300000, guid: 18bfbdd81526e5a478523e08b5dd47b9, type: 3}
     - m_Name: animation_bootsGrav-3
       m_Hash: 34132388
       m_Sprite: {fileID: 21300000, guid: e4f16c5de8f3a7240a76e75f47a1e875, type: 3}
       m_FromMain: 1
-      m_SpriteOverride: {fileID: 21300000, guid: 78c89abe4178ccd4baa003697c58ce13, type: 3}
+      m_SpriteOverride: {fileID: 21300000, guid: 7bf086cb6f804fe49b59cda81226bd54, type: 3}
     - m_Name: animation_bootsGrav-4
       m_Hash: -1670626297
       m_Sprite: {fileID: 21300000, guid: 746c263d6a1ed6f489d27845dd945396, type: 3}
       m_FromMain: 1
-      m_SpriteOverride: {fileID: 21300000, guid: 09b9b2956cfbc5f41964485997864e50, type: 3}
+      m_SpriteOverride: {fileID: 21300000, guid: 78c89abe4178ccd4baa003697c58ce13, type: 3}
     m_FromMain: 1
     m_EntryOverrideCount: 4
   m_PrimaryLibraryGUID: 35d7d5ebcb1a1d845b99a2fbd096f696
