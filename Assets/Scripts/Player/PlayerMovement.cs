@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] Collider2D groundCollider;
     [SerializeField] LayerMask terrainLayer;
 
+    public bool GravityEnabled {get; set;}
+    public bool BootsEnabled {get; set;}
+
     Animator animator;
     Rigidbody2D rigidBody;
     SpriteRenderer spriteRenderer;
@@ -19,6 +22,7 @@ public class PlayerMovement : MonoBehaviour {
 
 
     bool isGrounded;
+    
     
     public event Action OnFireEvent;
 
@@ -32,6 +36,10 @@ public class PlayerMovement : MonoBehaviour {
         rigidBody.gravityScale = 0;
         //set initial gravity to down
         ChangeGravity(GravityState.Down);
+
+        //Turns off equipment movement
+        GravityEnabled = false;
+        BootsEnabled = false;
     }
 
     void OnEnable() {
@@ -123,40 +131,43 @@ public class PlayerMovement : MonoBehaviour {
    
 
     void OnSwitchGravity(InputAction.CallbackContext context) {
-        switch(context.ReadValue<Vector2>().x) {
-            case 1 :
-                ChangeGravity(GravityState.Right);
-                break;
-            case -1 :
-                ChangeGravity(GravityState.Left);
-                break;
+        if(GravityEnabled) {
+            switch (context.ReadValue<Vector2>().x)
+            {
+                case 1:
+                    ChangeGravity(GravityState.Right);
+                    break;
+                case -1:
+                    ChangeGravity(GravityState.Left);
+                    break;
+            }
+
+            switch (context.ReadValue<Vector2>().y)
+            {
+                case 1:
+                    ChangeGravity(GravityState.Up);
+                    break;
+                case -1:
+                    ChangeGravity(GravityState.Down);
+                    break;
+            }
         }
-
-        switch (context.ReadValue<Vector2>().y)
-        {
-            case 1:
-                ChangeGravity(GravityState.Up);
-                break;
-            case -1:
-                ChangeGravity(GravityState.Down);
-                break;
-        }
-
-
-
     }
     
     void OnFire(InputAction.CallbackContext context) {
-        if(isGrounded) {
-            rigidBody.AddForce(transform.up * groundBoost, ForceMode2D.Impulse);
-        }
-        else {
-            rigidBody.AddForce(transform.up * shootBoost, ForceMode2D.Impulse);
+        if(BootsEnabled) {
+            if (isGrounded)
+            {
+                rigidBody.AddForce(transform.up * groundBoost, ForceMode2D.Impulse);
+            }
+            else
+            {
+                rigidBody.AddForce(transform.up * shootBoost, ForceMode2D.Impulse);
 
-            //I dont like how the fire event is only called sometimes, maybe name it something different
-            OnFireEvent?.Invoke();
+                //I dont like how the fire event is only called sometimes, maybe name it something different
+                OnFireEvent?.Invoke();
+            }
         }
-        Debug.Log("Fire");
         
     }
 

@@ -72,8 +72,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1484776232}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: -1.57, z: 0}
-  m_LocalScale: {x: 0.65, y: 0.012501, z: 1}
+  m_LocalPosition: {x: 0.11, y: -1.88, z: 0}
+  m_LocalScale: {x: 1, y: 0.15542366, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 986071619215430026}
@@ -141,7 +141,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -263,7 +263,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.15790868, y: 0.35314345}
+  m_Offset: {x: -0.15790868, y: 0.2110399}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -274,7 +274,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7084479, y: 3.6943536}
+  m_Size: {x: 1.7084479, y: 3.9785607}
   m_EdgeRadius: 0
 --- !u!50 &986071619215430029
 Rigidbody2D:
@@ -330,6 +330,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   weapon: {fileID: 1439997535}
+  noBoots: {fileID: 7108339969198208228, guid: 267e998881fa1964391207c492ba2247, type: 3}
+  boots: {fileID: 7108339969198208228, guid: b59a9beadbf28be458c147e30e09c90c, type: 3}
+  bootsAndGrav: {fileID: 7108339969198208228, guid: 35d7d5ebcb1a1d845b99a2fbd096f696, type: 3}
 --- !u!95 &1923292965
 Animator:
   serializedVersion: 4
