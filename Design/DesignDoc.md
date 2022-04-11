@@ -65,22 +65,28 @@ To jump, shoot to push the player up. (ie. JetpackJoyRide)
         - For example if gravity is going to the left, should the move left key move the player up?
     - Should the player only be able to rotate left and right or also able to rotate 180?
 
+    - Answer
+        - If on side wall use W and S for up and down
+        - Jumping should be a jump blast
+        
+
 - **How should the game flow work?**
     - Main menu
         - Start
         - Level Select?
     - What happens when a player dies?
-        - Do you restart the level?
-        - Do you restart the game?
+        - Do you restart the level? 2
+        - Do you restart the game? 1
     - Do you unlock levels when you complete them. 
         - For example, beat level 1 and quit game, is level 1 still completed?
     - What determines when you beat a level
-        - Is there a point you have to hit?
-        - Is there an enemy you have to kill?
-
+        - Is there a point you have to hit? 
+        - Is there an enemy you have to kill? 
+        - both *
 
 - **Assuming player has health**
     - Should health be an amount of HP, or should it be number of hits?
+    - hit system *
 
 - **Are there pickups through a level?**
     - Ex. Health
