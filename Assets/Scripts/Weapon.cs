@@ -5,27 +5,13 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
 
-    [SerializeField] Projectile projectile;
-    [SerializeField] float coolDown;
+    [SerializeField] Projectile projectilePrefab;
 
-    float timeSinceLastShot;
-
-    void Awake() {
-        timeSinceLastShot = float.MaxValue;
-
-    }
-
-    void Update() {
-        timeSinceLastShot += Time.deltaTime;
-    }
+    
 
     public void Shoot() {
-        if(timeSinceLastShot >= coolDown) {
-            
-            Projectile shot = Instantiate(projectile, transform.position, transform.rotation);
-        
-        }
-        coolDown = 0;
+            Projectile shot = Instantiate(projectilePrefab, transform.position, transform.rotation);
+    
     }
     
 }

@@ -17,33 +17,34 @@ public abstract class PickUp : MonoBehaviour {
         moveUp = true;
     }
     void Update() {
-        //Do a spinning animation or something
-        transform.Rotate(0,rotationSpeed*Time.deltaTime,0);
-        
-        if(transform.position.y < startY - deltaY) {
-            moveUp = true;
-        }
-        if(transform.position.y > startY + deltaY) {
-            moveUp = false;
-        }
-
-        if(moveUp) {
-            transform.position = new Vector3(transform.position.x, transform.position.y + floatSpeed * Time.deltaTime, transform.position.z);
-        }
-        else {
-            transform.position = new Vector3(transform.position.x, transform.position.y - floatSpeed * Time.deltaTime, transform.position.z);
-        }
-        
-
+        AnimationUpdate();
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
         PlayerUnit playerUnit = collider.gameObject.GetComponent<PlayerUnit>();
         if(playerUnit != null) {
             PickUpAction(playerUnit);
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 
     protected abstract void PickUpAction(PlayerUnit playerUnit);
+
+    void AnimationUpdate() {
+        transform.Rotate(0, rotationSpeed * Time.deltaTime, 0);
+
+        if (transform.position.y < startY - deltaY) {
+            moveUp = true;
+        }
+        if (transform.position.y > startY + deltaY) {
+            moveUp = false;
+        }
+
+        if (moveUp) {
+            transform.position = new Vector3(transform.position.x, transform.position.y + floatSpeed * Time.deltaTime, transform.position.z);
+        }
+        else {
+            transform.position = new Vector3(transform.position.x, transform.position.y - floatSpeed * Time.deltaTime, transform.position.z);
+        }
+    }
 }
