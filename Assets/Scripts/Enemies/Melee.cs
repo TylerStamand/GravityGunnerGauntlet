@@ -4,9 +4,6 @@ public class Melee : Enemy {
 
     [SerializeField] float moveSpeed = 3;
     [SerializeField] float moveRadius = 2;
-
-    [Tooltip("This can't be changed after starting the level")]
-    [SerializeField] GravityState gravityState;
     
     [Header("Jumping")]
     [SerializeField] bool canJump;
@@ -26,7 +23,6 @@ public class Melee : Enemy {
         startPos = transform.position;
         moveRight = true;
 
-        SetGravity();
     }
     
     void Update() {
@@ -97,22 +93,30 @@ public class Melee : Enemy {
         float startX = startPos.x;
 
         //For moving left and right
-        if (transform.position.x < startX - moveRadius)
+        float rightMovement = Vector3.Scale(transform.right, transform.position).magnitude;
+        float initalPoint = Vector3.Scale(transform.right, startPos).magnitude;
+
+        Debug.Log(rightMovement-initalPoint + " Max " + (initalPoint + moveRadius) + (rightMovement-initalPoint >= (initalPoint + moveRadius)) + " " + moveRight);
+        
+        
+        if (rightMovement-initalPoint >= (initalPoint + moveRadius))
         {
-            moveRight = true;
-        }
-        if (transform.position.x > startX + moveRadius)
-        {
-            moveRight = false;
+            if(moveRight == false) {
+                moveRight = true;
+            }
+            else {
+                moveRight = false;
+            }
+            
         }
 
         if (moveRight)
         {
-            transform.position = new Vector3(transform.position.x + moveSpeed * Time.deltaTime, transform.position.y, transform.position.z);
+            transform.position = transform.position + transform.right * moveSpeed * Time.deltaTime;
         }
         else
         {
-            transform.position = new Vector3(transform.position.x - moveSpeed * Time.deltaTime, transform.position.y, transform.position.z);
+            transform.position = transform.position - transform.right * moveSpeed * Time.deltaTime;
         }
 
         //For jumping (if enabled)
@@ -126,22 +130,6 @@ public class Melee : Enemy {
         
     }
 
-    void SetGravity() {
-        switch (gravityState)
-        {
-            case GravityState.Down:
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-                break;
-            case GravityState.Left:
-                transform.rotation = Quaternion.Euler(0, 0, -90);
-                break;
-            case GravityState.Right:
-                transform.rotation = Quaternion.Euler(0, 0, 90);
-                break;
-            case GravityState.Up:
-                transform.rotation = Quaternion.Euler(0, 0, 180);
-                break;
-        }
-    }
+
 
 }
