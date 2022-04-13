@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class Flying : MonoBehaviour
+public class Flying : Enemy
 {
 
     [SerializeField] float rangeRadius = 1;
@@ -11,21 +11,37 @@ public class Flying : MonoBehaviour
 
     float timeSinceLastAttack;
 
-    void Awake() {
+    protected override void Awake() {
+        base.Awake();
         timeSinceLastAttack = float.MaxValue;
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        base.Update();
         Collider2D collider2D = Physics2D.OverlapCircle(transform.position, rangeRadius, playerLayer);
-        
+    
         PlayerUnit player = collider2D?.gameObject.GetComponent<PlayerUnit>();
-        if(player != null && timeSinceLastAttack > attackCoolDown) {
-            Debug.Log("Attack");
-            timeSinceLastAttack = 0;
-            transform.DOMove(player.transform.position, moveSpeed, false).SetSpeedBased(true);
+
+        if(dead) {
+            transform.DOKill();
         }
+
+        else {
+            if (player != null && timeSinceLastAttack > attackCoolDown)
+            {
+                animator.SetBool("attacking", true);
+
+                timeSinceLastAttack = 0;
+                transform.DOMove(player.transform.position, moveSpeed, false).SetSpeedBased(true).SetEase(Ease.InOutBack).onComplete +=
+                    () => animator.SetBool("attacking", false);
+            }
+        }
+
+
+       
+        
         timeSinceLastAttack += Time.deltaTime;
     }
 
