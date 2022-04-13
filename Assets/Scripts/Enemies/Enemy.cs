@@ -1,26 +1,47 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IDamageable
+
+public abstract class Enemy : MonoBehaviour, IDamageable
 {
     [SerializeField] int maxHealth;
 
     protected SpriteRenderer spriteRenderer;
+    protected Animator animator;
 
     protected int currentHealth;
+    protected bool dead;
 
     protected virtual void Awake() {
         currentHealth = maxHealth;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
-
+    protected virtual void Update() {
+        if(!dead) {
+            Move();
+        }
+        
+    }
 
     public void TakeDamage(int damage) {
+        currentHealth--;
         if(currentHealth <= 0) {
-            Destroy(gameObject);
+            StartCoroutine(Die());
         }
+        else {
+            animator.SetTrigger("Hit");
+        }
+    }
+
+    protected abstract void Move();
+
+    IEnumerator Die() {
+        dead = true;
+        animator.SetBool("Dead", true);
+        yield return new WaitForSeconds(2);
+        Destroy(gameObject);
     }
 
 }

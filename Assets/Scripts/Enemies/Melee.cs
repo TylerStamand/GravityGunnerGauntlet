@@ -14,6 +14,7 @@ public class Melee : Enemy {
 
     Vector3 startPos = Vector3.zero;
     bool moveRight;
+    bool spriteFliped;
     float timeSinceLastJump;
 
     protected override void Awake() {
@@ -23,12 +24,13 @@ public class Melee : Enemy {
         rigidBody.gravityScale = 0;
         startPos = transform.position;
         moveRight = true;
+        spriteFliped = spriteRenderer.flipX;
 
     }
     
-    void Update() {
+    protected override void Update() {
+        base.Update();
         timeSinceLastJump += Time.deltaTime;
-        Move();
     }
 
     void FixedUpdate() {
@@ -60,7 +62,7 @@ public class Melee : Enemy {
         Gizmos.DrawLine(leftBound, rightBound);
     }
 
-    void Move() {
+    protected override void Move() {
         //For moving left and right
         Vector3 rightMovement = Vector3.Scale(transform.right, transform.position);
         Vector3 initalPoint = Vector3.Scale(transform.right, startPos);
@@ -70,11 +72,14 @@ public class Melee : Enemy {
         {
             if(moveRight == false) {
                 moveRight = true;
-                spriteRenderer.flipX = false;
+                spriteFliped = !spriteFliped;
+                spriteRenderer.flipX = spriteFliped;
+                
             }
             else {
                 moveRight = false;
-                spriteRenderer.flipX = true;
+                spriteFliped = !spriteFliped;
+                spriteRenderer.flipX = spriteFliped;
             }
             
         }
