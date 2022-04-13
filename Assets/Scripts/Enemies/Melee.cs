@@ -89,17 +89,12 @@ public class Melee : Enemy {
 
         // #endregion
 
-
-        float startX = startPos.x;
-
         //For moving left and right
-        float rightMovement = Vector3.Scale(transform.right, transform.position).magnitude;
-        float initalPoint = Vector3.Scale(transform.right, startPos).magnitude;
+        Vector3 rightMovement = Vector3.Scale(transform.right, transform.position);
+        Vector3 initalPoint = Vector3.Scale(transform.right, startPos);
 
-        Debug.Log(rightMovement-initalPoint + " Max " + (initalPoint + moveRadius) + (rightMovement-initalPoint >= (initalPoint + moveRadius)) + " " + moveRight);
-        
-        
-        if (rightMovement-initalPoint >= (initalPoint + moveRadius))
+
+        if (Vector3.Distance(rightMovement, initalPoint) >= Vector3.Distance(initalPoint, initalPoint + transform.right * moveRadius))
         {
             if(moveRight == false) {
                 moveRight = true;
