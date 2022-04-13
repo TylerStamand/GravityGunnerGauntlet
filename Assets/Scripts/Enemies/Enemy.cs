@@ -19,9 +19,6 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     }
 
     protected virtual void Update() {
-        if(!dead) {
-            Move();
-        }
         
     }
 
@@ -34,8 +31,6 @@ public abstract class Enemy : MonoBehaviour, IDamageable
             animator.SetTrigger("Hit");
         }
     }
-
-    protected abstract void Move();
 
     IEnumerator Die() {
         dead = true;

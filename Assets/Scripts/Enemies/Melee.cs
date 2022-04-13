@@ -29,7 +29,9 @@ public class Melee : Enemy {
     }
     
     protected override void Update() {
-        base.Update();
+        if(!dead) {
+            Move();
+        }
         timeSinceLastJump += Time.deltaTime;
     }
 
@@ -62,7 +64,7 @@ public class Melee : Enemy {
         Gizmos.DrawLine(leftBound, rightBound);
     }
 
-    protected override void Move() {
+    void Move() {
         //For moving left and right
         Vector3 rightMovement = Vector3.Scale(transform.right, transform.position);
         Vector3 initalPoint = Vector3.Scale(transform.right, startPos);
