@@ -6,10 +6,13 @@ public class Enemy : MonoBehaviour, IDamageable
 {
     [SerializeField] int maxHealth;
 
-    int currentHealth;
+    protected SpriteRenderer spriteRenderer;
 
-    void Awake() {
+    protected int currentHealth;
+
+    protected virtual void Awake() {
         currentHealth = maxHealth;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
 

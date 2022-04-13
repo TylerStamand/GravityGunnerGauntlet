@@ -16,7 +16,8 @@ public class Melee : Enemy {
     bool moveRight;
     float timeSinceLastJump;
 
-    void Awake() {
+    protected override void Awake() {
+        base.Awake();
         rigidBody = GetComponent<Rigidbody2D>();
         //turn off default rigidBody Gravity;
         rigidBody.gravityScale = 0;
@@ -60,35 +61,6 @@ public class Melee : Enemy {
     }
 
     void Move() {
-
-
-        // //For flipping sprite based on direction
-        // #region 
-        // if (gravityState == GravityState.Right || gravityState == GravityState.Down)
-        // {
-        //     if (value > 0)
-        //     {
-        //         spriteRenderer.flipX = false;
-        //     }
-        //     else if (value < 0)
-        //     {
-        //         spriteRenderer.flipX = true;
-        //     }
-        // }
-        // else
-        // {
-        //     if (value > 0)
-        //     {
-        //         spriteRenderer.flipX = true;
-        //     }
-        //     else if (value < 0)
-        //     {
-        //         spriteRenderer.flipX = false;
-        //     }
-        // }
-
-        // #endregion
-
         //For moving left and right
         Vector3 rightMovement = Vector3.Scale(transform.right, transform.position);
         Vector3 initalPoint = Vector3.Scale(transform.right, startPos);
@@ -98,9 +70,11 @@ public class Melee : Enemy {
         {
             if(moveRight == false) {
                 moveRight = true;
+                spriteRenderer.flipX = false;
             }
             else {
                 moveRight = false;
+                spriteRenderer.flipX = true;
             }
             
         }
