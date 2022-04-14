@@ -10,6 +10,9 @@ public class Melee : Enemy {
     [SerializeField] float jumpCoolDown;
     [SerializeField] float jumpForce;
 
+    [Header("Combat")]
+    [SerializeField] int damage = 1;
+
     Rigidbody2D rigidBody;
 
     Vector3 startPos = Vector3.zero;
@@ -44,7 +47,7 @@ public class Melee : Enemy {
         PlayerUnit player = collision.gameObject.GetComponent<PlayerUnit>();
 
         if(player != null) {
-            player.TakeDamage(1);
+            player.TakeDamage(damage);
         }
     }
 
