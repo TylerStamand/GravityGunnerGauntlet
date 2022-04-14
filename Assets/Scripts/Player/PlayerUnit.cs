@@ -34,7 +34,10 @@ public class PlayerUnit : MonoBehaviour, IDamageable {
     }
 
     public void TakeDamage(int damage) {
-        ChangeHealth(currentHealth--);
+        ChangeHealth(currentHealth - 1);
+
+        Debug.Log("Damage taken " + damage + " , now at " + currentHealth + " health");
+
         if(currentHealth <= 0) {
             //Change state to dead
             Debug.Log("Dead");
@@ -42,6 +45,9 @@ public class PlayerUnit : MonoBehaviour, IDamageable {
     }
 
     void ChangeHealth(int newHealth) {
+        if(newHealth < 0) {
+            newHealth = 0;
+        }
         currentHealth = newHealth;
         OnHealthChange?.Invoke(currentHealth);
     }
