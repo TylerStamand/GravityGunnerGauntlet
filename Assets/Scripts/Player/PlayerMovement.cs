@@ -7,8 +7,13 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] float moveSpeed = 3;
     [SerializeField] float groundBoost = 5;
     [SerializeField] float shootBoost = 2;
+
+    [SerializeField] float jumpCoolDown = .3f;
+    
     [SerializeField] Collider2D groundCollider;
     [SerializeField] LayerMask terrainLayer;
+
+    public event Action OnFireEvent;
 
     public bool GravityEnabled {get; set;}
     public bool BootsEnabled {get; set;}
@@ -22,9 +27,8 @@ public class PlayerMovement : MonoBehaviour {
 
 
     bool isGrounded;
+    float timeSinceLastJump;
     
-    
-    public event Action OnFireEvent;
 
     void Awake() {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -40,6 +44,9 @@ public class PlayerMovement : MonoBehaviour {
         //Turns off equipment movement
         GravityEnabled = false;
         BootsEnabled = false;
+
+
+        timeSinceLastJump = float.MaxValue;
     }
 
     void OnEnable() {
@@ -48,7 +55,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void Start() {
         playerControls.Player.SwitchGravity.performed += OnSwitchGravity;
-        playerControls.Player.Fire.performed += OnFire;
+        playerControls.Player.Fire.performed += OnJump;
         
     }
 
@@ -57,6 +64,8 @@ public class PlayerMovement : MonoBehaviour {
         CheckIfGrounded(); 
 
         ApplySideMovement();
+
+        timeSinceLastJump += Time.deltaTime;
 
     }
 
@@ -154,7 +163,7 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
     
-    void OnFire(InputAction.CallbackContext context) {
+    void OnJump(InputAction.CallbackContext context) {
         if(BootsEnabled) {
             if (isGrounded)
             {
@@ -162,10 +171,14 @@ public class PlayerMovement : MonoBehaviour {
             }
             else
             {
-                rigidBody.AddForce(transform.up * shootBoost, ForceMode2D.Impulse);
+                if(timeSinceLastJump > jumpCoolDown) {
+                    rigidBody.AddForce(transform.up * shootBoost, ForceMode2D.Impulse);
 
-                //I dont like how the fire event is only called sometimes, maybe name it something different
-                OnFireEvent?.Invoke();
+                    OnFireEvent?.Invoke();
+
+                    timeSinceLastJump = 0;
+                }
+                
             }
         }
         
