@@ -643,14 +643,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1439997535, guid: b7768e683e7506f42a87b7d285c5f46f, type: 3}
-      propertyPath: projectilePrefab
-      value: 
-      objectReference: {fileID: 5743741048651761380, guid: 7a6fff0dff325f6449c3d8bc14ffad33, type: 3}
-    - target: {fileID: 1484776232, guid: b7768e683e7506f42a87b7d285c5f46f, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 986071619215430026, guid: b7768e683e7506f42a87b7d285c5f46f, type: 3}
       propertyPath: m_RootOrder
       value: 5
