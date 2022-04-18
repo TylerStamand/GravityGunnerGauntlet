@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+
+    [SerializeField] PlayerUnit playerUnitPrefab;
+
+
     private static GameManager _instance;
-    public int score = 0;
-    public int health = 3;
+    
 
     // Allows us to refer to the game manager as an instance
     public static GameManager Instance
@@ -21,8 +24,6 @@ public class GameManager : MonoBehaviour
     // If there is another game manager destroy it
     private void Awake()
     {
-        health = 3;
-        score = 0;
 
         if (_instance != null && _instance != this)
         {
@@ -38,32 +39,27 @@ public class GameManager : MonoBehaviour
     // Used to change level
     public void goToLevel(int levelNumber)
     {
-        
-        GameManager.Instance.addHealth(3);
+      
+
         SceneManager.LoadScene(levelNumber);
-    }
 
-    public void subHealth(int value)
-    {
-        // Subtract the value from health
-        health = health - value;
-
-        if (health <= 0)
+        if (levelNumber == 1)
         {
-            goToLevel(3);
+            playerUnitPrefab.ResetPlayer();
         }
+
+        GameObject playerSpawn = GameObject.FindGameObjectWithTag("PlayerSpawn");
+        if(playerSpawn != null) {
+            PlayerUnit playerUnit = Instantiate(playerUnitPrefab, playerSpawn.transform.position, Quaternion.identity);
+
+        }
+        else {
+            Debug.Assert(false, "No player spawn found, not spawning player. Try adding an object with the tag of PlayerSpawn");
+        }
+        
     }
 
-    public void addHealth(int value)
-    {
-        // Add the value from health
-        health = health + value;
 
-        if (health > 3)
-        {
-            health = 3;
-        }
-    }
 
     public void QuitGame()
     {

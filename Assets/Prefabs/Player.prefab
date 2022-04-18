@@ -328,6 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a270654918c44e41acf0fb0a36359c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: d700c2f6ca78569488d60f8171f98439, type: 2}
   maxHealth: 3
   weapon: {fileID: 1439997535}
   noBoots: {fileID: 7108339969198208228, guid: 267e998881fa1964391207c492ba2247, type: 3}
