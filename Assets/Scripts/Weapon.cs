@@ -10,8 +10,9 @@ public class Weapon : MonoBehaviour
     
 
     public void Shoot() {
-            Projectile shot = Instantiate(projectilePrefab, transform.position, transform.rotation);
-    
+        GameObject parentTransform = transform.parent.gameObject;
+        Projectile shot = Instantiate(projectilePrefab, transform.position, transform.rotation);
+        shot.SetParentTransform(parentTransform);
     }
     
 }
