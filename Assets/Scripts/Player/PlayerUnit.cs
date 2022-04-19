@@ -65,6 +65,7 @@ public class PlayerUnit : MonoBehaviour, IDamageable {
             playerMovement.OnFireEvent += Shoot;
             playerMovement.BootsEnabled = playerData.BootsEnabled;
             playerMovement.GravityEnabled = playerData.GravityEnabled;
+            Debug.Log(playerMovement.BootsEnabled);
         }
 
         //Sets sprite based on abilities unlocked

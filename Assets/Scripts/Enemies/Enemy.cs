@@ -35,7 +35,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     IEnumerator Die() {
         dead = true;
         animator.SetBool("dead", true);
-        GetComponent<BoxCollider2D>().enabled = false;
+     
         yield return new WaitForSeconds(2);
         Destroy(gameObject);
     }

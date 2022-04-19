@@ -38,13 +38,9 @@ public class PlayerMovement : MonoBehaviour {
 
         //turn off default rigidBody Gravity;
         rigidBody.gravityScale = 0;
+
         //set initial gravity to down
         ChangeGravity(GravityState.Down);
-
-        //Turns off equipment movement
-        GravityEnabled = false;
-        BootsEnabled = false;
-
 
         timeSinceLastJump = float.MaxValue;
     }
@@ -168,6 +164,9 @@ public class PlayerMovement : MonoBehaviour {
             if (isGrounded)
             {
                 rigidBody.AddForce(transform.up * groundBoost, ForceMode2D.Impulse);
+                OnFireEvent?.Invoke();
+
+                timeSinceLastJump = 0;
             }
             else
             {

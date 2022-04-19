@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8d1662dba30de4689427dbe2e3c0b7, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  GravityEnabled: 0
-  BootsEnabled: 0
+  GravityEnabled: 1
+  BootsEnabled: 1

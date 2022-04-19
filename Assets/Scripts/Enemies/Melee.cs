@@ -40,7 +40,10 @@ public class Melee : Enemy {
 
     void FixedUpdate() {
         //Apply Gravity
-        rigidBody.AddForce(transform.up * Physics.gravity.y * rigidBody.mass);
+        if(!dead) {
+            rigidBody.AddForce(transform.up * Physics.gravity.y * rigidBody.mass);
+        }
+        
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
