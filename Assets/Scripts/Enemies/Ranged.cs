@@ -23,17 +23,22 @@ public class Ranged : Enemy
     {
         base.Update();
 
+        if(!dead) {
+            Collider2D collider2D = Physics2D.OverlapCircle(transform.position, rangeRadius, playerLayer);
+            PlayerUnit player = collider2D?.gameObject.GetComponent<PlayerUnit>();
 
-        Collider2D collider2D = Physics2D.OverlapCircle(transform.position, rangeRadius, playerLayer);
-        PlayerUnit player = collider2D?.gameObject.GetComponent<PlayerUnit>();
 
-    
-        if(timeSinceLastShoot >= attackCoolDown && player != null) {
-            weapon.transform.up = player.transform.position - weapon.transform.position;
-            weapon.Shoot();
-            timeSinceLastShoot = 0;
+            if (timeSinceLastShoot >= attackCoolDown && player != null)
+            {
+                weapon.transform.up = player.transform.position - weapon.transform.position;
+                animator.SetBool("attacking", true);
+                weapon.Shoot();
+                animator.SetBool("attacking", false);
+                timeSinceLastShoot = 0;
+            }
+
         }
-        
+       
 
         timeSinceLastShoot += Time.deltaTime;
     }
