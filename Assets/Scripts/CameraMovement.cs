@@ -7,11 +7,18 @@ public class CameraMovement : MonoBehaviour
     PlayerUnit playerUnit;
 
     void Awake() {
-        playerUnit = FindObjectOfType<PlayerUnit>();
+        GameManager.Instance.PlayerSpawn += SetPlayer;
     }
 
     void Update() {
-        Vector3 playerPosition = playerUnit.transform.position;
-        transform.position = new Vector3(playerPosition.x, playerPosition.y, transform.position.z);
+        if(playerUnit != null) {
+            Vector3 playerPosition = playerUnit.transform.position;
+            transform.position = new Vector3(playerPosition.x, playerPosition.y, transform.position.z);
+        }
+
+    }
+
+    void SetPlayer(PlayerUnit playerUnit) {
+        this.playerUnit = playerUnit;
     }
 }

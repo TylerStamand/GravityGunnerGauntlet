@@ -1,13 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+
+    [SerializeField] PlayerUnit playerUnitPrefab;
+
+
     private static GameManager _instance;
-    public int score = 0;
-    public int health = 3;
+    
+
+    public event Action<PlayerUnit> PlayerSpawn;
 
     // Allows us to refer to the game manager as an instance
     public static GameManager Instance
@@ -21,8 +25,6 @@ public class GameManager : MonoBehaviour
     // If there is another game manager destroy it
     private void Awake()
     {
-        health = 3;
-        score = 0;
 
         if (_instance != null && _instance != this)
         {
@@ -38,36 +40,40 @@ public class GameManager : MonoBehaviour
     // Used to change level
     public void goToLevel(int levelNumber)
     {
-        
-        GameManager.Instance.addHealth(3);
+      
+
         SceneManager.LoadScene(levelNumber);
+
+        SceneManager.sceneLoaded += SetPlayer;
+
+        
+        
     }
 
-    public void subHealth(int value)
-    {
-        // Subtract the value from health
-        health = health - value;
 
-        if (health <= 0)
-        {
-            goToLevel(3);
-        }
-    }
-
-    public void addHealth(int value)
-    {
-        // Add the value from health
-        health = health + value;
-
-        if (health > 3)
-        {
-            health = 3;
-        }
-    }
 
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+
+    void SetPlayer(Scene scene, LoadSceneMode mode) {
+        GameObject playerSpawn = GameObject.FindGameObjectWithTag("PlayerSpawn");
+        if (playerSpawn != null)
+        {
+            PlayerUnit playerUnit = Instantiate(playerUnitPrefab, playerSpawn.transform.position, Quaternion.identity);
+            PlayerSpawn?.Invoke(playerUnit);
+            if (scene.buildIndex == 1)
+            {
+                playerUnit.ResetPlayer();
+                Debug.Log("Reset Player Data from gamescript");
+            }
+        }
+        else
+        {
+            Debug.Assert(false, "No player spawn found, not spawning player. Try adding an object with the tag of PlayerSpawn");
+        }
     }
 
 }

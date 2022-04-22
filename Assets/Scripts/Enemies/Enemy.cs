@@ -28,13 +28,23 @@ public abstract class Enemy : MonoBehaviour, IDamageable
             StartCoroutine(Die());
         }
         else {
-            animator.SetTrigger("hit");
+            if(animator != null) {
+                animator.SetTrigger("hit");
+            }
+            
+        
+            
         }
     }
 
     IEnumerator Die() {
         dead = true;
-        animator.SetBool("dead", true);
+
+        if(animator != null) {
+            animator.SetBool("dead", true);
+        }   
+        
+     
         yield return new WaitForSeconds(2);
         Destroy(gameObject);
     }

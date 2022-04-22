@@ -4,6 +4,8 @@ using UnityEngine.U2D.Animation;
 
 public class PlayerUnit : MonoBehaviour, IDamageable {
 
+    [SerializeField] PlayerData playerData;
+
     [SerializeField] int maxHealth = 3;
     [SerializeField] Weapon weapon;
     
@@ -23,13 +25,8 @@ public class PlayerUnit : MonoBehaviour, IDamageable {
     void Awake() {
         playerMovement = GetComponent<PlayerMovement>();
         spriteLibrary = GetComponent<SpriteLibrary>();
-        if(playerMovement != null) {
-            playerMovement.OnFireEvent += Shoot;
-        }
 
-
-        ChangeHealth(maxHealth);
-        spriteLibrary.spriteLibraryAsset = noBoots;
+        Initialize();
         
     }
 
@@ -44,27 +41,65 @@ public class PlayerUnit : MonoBehaviour, IDamageable {
         }
     }
 
-    void ChangeHealth(int newHealth) {
-        if(newHealth < 0) {
-            newHealth = 0;
-        }
-        currentHealth = newHealth;
-        OnHealthChange?.Invoke(currentHealth);
-    }
 
-    void Shoot() {
-        weapon.Shoot();
+    public void ResetPlayer() {
+        playerData.ResetPlayerData();
+        Initialize();
     }
 
     public void EnableBoots() {
         playerMovement.BootsEnabled = true;
         spriteLibrary.spriteLibraryAsset = boots;
+        playerData.BootsEnabled = true;
 
     }
 
     public void EnableGravity() {
         playerMovement.GravityEnabled = true;
         spriteLibrary.spriteLibraryAsset = bootsAndGrav;
+        playerData.GravityEnabled = true;
+    }
+
+    void Initialize() {
+        //Set Player Movement script up
+        if (playerMovement != null)
+        {
+            playerMovement.OnFireEvent += Shoot;
+            playerMovement.BootsEnabled = playerData.BootsEnabled;
+            playerMovement.GravityEnabled = playerData.GravityEnabled;
+        }
+
+        //Sets sprite based on abilities unlocked
+        if (playerData.BootsEnabled && playerData.GravityEnabled)
+        {
+            spriteLibrary.spriteLibraryAsset = bootsAndGrav;
+        }
+        else if (playerData.BootsEnabled)
+        {
+            spriteLibrary.spriteLibraryAsset = boots;
+        }
+        else
+        {
+            spriteLibrary.spriteLibraryAsset = noBoots;
+        }
+
+        ChangeHealth(maxHealth);
+        
+    }
+
+    void ChangeHealth(int newHealth)
+    {
+        if (newHealth < 0)
+        {
+            newHealth = 0;
+        }
+        currentHealth = newHealth;
+        OnHealthChange?.Invoke(currentHealth);
+    }
+
+    void Shoot()
+    {
+        weapon.Shoot();
     }
 
 }
