@@ -50,12 +50,14 @@ public class PlayerUnit : MonoBehaviour, IDamageable {
     public void EnableBoots() {
         playerMovement.BootsEnabled = true;
         spriteLibrary.spriteLibraryAsset = boots;
+        playerData.BootsEnabled = true;
 
     }
 
     public void EnableGravity() {
         playerMovement.GravityEnabled = true;
         spriteLibrary.spriteLibraryAsset = bootsAndGrav;
+        playerData.GravityEnabled = true;
     }
 
     void Initialize() {
@@ -65,7 +67,6 @@ public class PlayerUnit : MonoBehaviour, IDamageable {
             playerMovement.OnFireEvent += Shoot;
             playerMovement.BootsEnabled = playerData.BootsEnabled;
             playerMovement.GravityEnabled = playerData.GravityEnabled;
-            Debug.Log(playerMovement.BootsEnabled);
         }
 
         //Sets sprite based on abilities unlocked

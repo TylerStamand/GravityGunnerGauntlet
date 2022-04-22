@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
@@ -11,6 +10,8 @@ public class GameManager : MonoBehaviour
 
     private static GameManager _instance;
     
+
+    public event Action<PlayerUnit> PlayerSpawn;
 
     // Allows us to refer to the game manager as an instance
     public static GameManager Instance
@@ -43,19 +44,9 @@ public class GameManager : MonoBehaviour
 
         SceneManager.LoadScene(levelNumber);
 
-        if (levelNumber == 1)
-        {
-            playerUnitPrefab.ResetPlayer();
-        }
+        SceneManager.sceneLoaded += SetPlayer;
 
-        GameObject playerSpawn = GameObject.FindGameObjectWithTag("PlayerSpawn");
-        if(playerSpawn != null) {
-            PlayerUnit playerUnit = Instantiate(playerUnitPrefab, playerSpawn.transform.position, Quaternion.identity);
-
-        }
-        else {
-            Debug.Assert(false, "No player spawn found, not spawning player. Try adding an object with the tag of PlayerSpawn");
-        }
+        
         
     }
 
@@ -64,6 +55,25 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+
+    void SetPlayer(Scene scene, LoadSceneMode mode) {
+        GameObject playerSpawn = GameObject.FindGameObjectWithTag("PlayerSpawn");
+        if (playerSpawn != null)
+        {
+            PlayerUnit playerUnit = Instantiate(playerUnitPrefab, playerSpawn.transform.position, Quaternion.identity);
+            PlayerSpawn?.Invoke(playerUnit);
+            if (scene.buildIndex == 1)
+            {
+                playerUnit.ResetPlayer();
+                Debug.Log("Reset Player Data from gamescript");
+            }
+        }
+        else
+        {
+            Debug.Assert(false, "No player spawn found, not spawning player. Try adding an object with the tag of PlayerSpawn");
+        }
     }
 
 }
