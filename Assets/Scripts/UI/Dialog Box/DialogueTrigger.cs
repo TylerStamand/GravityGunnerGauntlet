@@ -10,4 +10,10 @@ public class DialogueTrigger : MonoBehaviour
     {
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+        Destroy(gameObject);
+    }
 }

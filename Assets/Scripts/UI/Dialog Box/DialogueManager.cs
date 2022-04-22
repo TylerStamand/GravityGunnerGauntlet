@@ -9,13 +9,18 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
     public Animator animator;
     public float typingSpeed;
+    public int dialogueCounter;
 
     private Queue<string> sentences;
+
+    [SerializeField]
+    private Animator[] myAnimationControllers;
 
     // Start is called before the first frame update
     void Start()
     {
         sentences = new Queue<string>();
+        dialogueCounter = 0;
     }
 
     public void StartDialogue(Dialogue dialogue)
@@ -64,5 +69,14 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.Log("End of conversation");
         animator.SetBool("IsOpen", false);
+
+        // Open a door to the next area
+        playAnimation(dialogueCounter);
+        dialogueCounter++;
+
+    }
+    public void playAnimation(int animatorNum)
+    {
+        myAnimationControllers[animatorNum].SetBool("OpenDoor", true);
     }
 }
