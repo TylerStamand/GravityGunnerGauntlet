@@ -176,10 +176,10 @@ MonoBehaviour:
     sentences:
     - This the the Gravity Watch, with it you will be able to manipulate gravity
       in any cardinal direction.
-    - You use it, press the "arrow key" in the direction you want gravity to switch
-      do.
+    - To use it, press the "arrow key" in the direction you want gravity to switch
+      to.
     - Keep in mind that it only switches your gravity, we haven't completed the prototype
-      that can do so...yet
+      that can switch everythings gravity... yet.
     - Proceed to the next chamber to test it out before we throw you out there.
 --- !u!61 &11050423
 BoxCollider2D:
@@ -1026,11 +1026,11 @@ MonoBehaviour:
         m_Calls: []
     sentences:
     - Feast your eyes on the scientist's newest invention.
-    - The Bang Boots 3.0, now with recoil compensators to prevent the user legs shattering...we
-      think.
+    - The Bang Boots 3.0, now with recoil compensators to prevent the users legs
+      from shattering...we think.
     - Press "space" to fire a concentrated blast of energy that will launch you upwards.
-    - Proceed to the next chamber and defeat the hologram we have set to to begin
-      the first test of these boots.
+    - Proceed to the next chamber and defeat the hologram we have set to begin the
+      first test of these boots.
 --- !u!61 &435391289
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -30087,12 +30087,117 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8579982566065898913, guid: b24149f106c95a74ea0ef60048e1421b, type: 3}
+      propertyPath: playerUnitPrefab
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8579982566065898914, guid: b24149f106c95a74ea0ef60048e1421b, type: 3}
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b24149f106c95a74ea0ef60048e1421b, type: 3}
+--- !u!1 &484517229 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8579982566065898914, guid: b24149f106c95a74ea0ef60048e1421b, type: 3}
+  m_PrefabInstance: {fileID: 484517228}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &484517230
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484517229}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 14bbcdb6c96eef74aba14fe63ec7bf02, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &540456294
 GameObject:
   m_ObjectHideFlags: 0
@@ -34121,7 +34226,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -137.09998, y: 26.800014}
+  m_AnchoredPosition: {x: -129, y: 26.800014}
   m_SizeDelta: {x: -320, y: -160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1695932813
