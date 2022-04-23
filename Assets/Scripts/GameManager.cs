@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +15,8 @@ public class GameManager : MonoBehaviour
     
 
     public event Action<PlayerUnit> PlayerSpawn;
+    
+    public bool AllEnemiesKilled;
 
     // Allows us to refer to the game manager as an instance
     public static GameManager Instance
@@ -21,6 +26,9 @@ public class GameManager : MonoBehaviour
             return _instance;
         }
     }
+
+
+    List<Enemy> levelEnemies;
 
     // If there is another game manager destroy it
     private void Awake()
@@ -38,13 +46,14 @@ public class GameManager : MonoBehaviour
     }
 
     // Used to change level
-    public void goToLevel(int levelNumber)
+    public void GoToLevel(int levelNumber)
     {
       
 
         SceneManager.LoadScene(levelNumber);
 
         SceneManager.sceneLoaded += SetPlayer;
+        SceneManager.sceneLoaded += SetEnemies;
 
         
         
@@ -73,6 +82,27 @@ public class GameManager : MonoBehaviour
         else
         {
             Debug.Assert(false, "No player spawn found, not spawning player. Try adding an object with the tag of PlayerSpawn");
+        }
+    }
+
+
+    void SetEnemies(Scene scene, LoadSceneMode mode) {
+        levelEnemies = FindObjectsOfType<Enemy>().ToList<Enemy>();
+        foreach(Enemy enemy in levelEnemies) {
+            enemy.OnDeath.AddListener(RemoveEnemyFromList);
+        }
+        if(levelEnemies.Count > 0) {
+            AllEnemiesKilled = false;
+        }
+        else AllEnemiesKilled = true;
+        
+    }
+    void RemoveEnemyFromList(Enemy enemy) {
+        
+        levelEnemies.Remove(enemy);
+        Debug.Log("Enemies left: " + levelEnemies.Count);
+        if(levelEnemies.Count == 0) {
+            AllEnemiesKilled = true;
         }
     }
 
