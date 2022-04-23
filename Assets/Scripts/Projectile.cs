@@ -34,12 +34,10 @@ public class Projectile : MonoBehaviour {
         IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
         if(damageable != null) {
             damageable.TakeDamage(damage, transform.position - collision.transform.position);
-            Debug.Log(collision.gameObject.name + " took damage");
             rigidbody.velocity = Vector2.zero;
             Destroy(gameObject);
         }
         else {
-            Debug.Log(collision.gameObject.name);
             this.collider.enabled = false;
             hitGround = true;
 

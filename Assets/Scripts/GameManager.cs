@@ -48,12 +48,15 @@ public class GameManager : MonoBehaviour
     // Used to change level
     public void GoToLevel(int levelNumber)
     {
-      
-
         SceneManager.LoadScene(levelNumber);
+        //IF NOT MAIN MENU
+        if(levelNumber != 0) {
 
-        SceneManager.sceneLoaded += SetPlayer;
-        SceneManager.sceneLoaded += SetEnemies;
+            SceneManager.sceneLoaded += SetPlayer;
+            SceneManager.sceneLoaded += SetEnemies;
+        }
+
+
 
         
         
@@ -83,11 +86,14 @@ public class GameManager : MonoBehaviour
         {
             Debug.Assert(false, "No player spawn found, not spawning player. Try adding an object with the tag of PlayerSpawn");
         }
+        SceneManager.sceneLoaded -= SetPlayer;
     }
 
 
     void SetEnemies(Scene scene, LoadSceneMode mode) {
+        Debug.Log("Enemies Set");
         levelEnemies = FindObjectsOfType<Enemy>().ToList<Enemy>();
+        Debug.Log("Enemy count: " + levelEnemies.Count);
         foreach(Enemy enemy in levelEnemies) {
             enemy.OnDeath.AddListener(RemoveEnemyFromList);
         }
@@ -95,6 +101,7 @@ public class GameManager : MonoBehaviour
             AllEnemiesKilled = false;
         }
         else AllEnemiesKilled = true;
+        SceneManager.sceneLoaded -= SetEnemies;
         
     }
     void RemoveEnemyFromList(Enemy enemy) {

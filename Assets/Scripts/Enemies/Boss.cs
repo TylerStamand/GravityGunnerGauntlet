@@ -140,14 +140,6 @@ public class Boss : Enemy
             
         }
 
-     
-        // Boss boss = collider.gameObject.GetComponent<Boss>();
-        // if (boss != null && Side == boss.CurrentDirection)
-        // {
-        //     boss.EndCharge();
-        //     electicityOn = true;
-        //     timeElectricityOn = 0;
-        // }
     }
 
     void Walk(int dir) {

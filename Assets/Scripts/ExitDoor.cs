@@ -8,11 +8,20 @@ public class ExitDoor : MonoBehaviour
     [SerializeField] int levelToSwitchTo;
 
 
+    Animator animator;
+
     bool canOpen;
+
+    void Awake() {
+        animator = GetComponent<Animator>();
+    }
 
     void Update() {
         if(openOnEnemiesKilled && GameManager.Instance.AllEnemiesKilled) {
-            canOpen = true;
+            if(canOpen != true) {
+                canOpen = true;
+                animator.SetBool("Open", true);
+            }
         }
     }
 
@@ -26,6 +35,7 @@ public class ExitDoor : MonoBehaviour
     //Used for other activations other than enemies killed requirement
     public void SetDoorCanOpen() {
         canOpen = true;
+        animator.SetBool("OpenDoor", true);
     }
 
     

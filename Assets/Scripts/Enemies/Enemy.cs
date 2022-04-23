@@ -37,15 +37,19 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     }
 
     IEnumerator Die() {
-        dead = true;
-        OnDeath?.Invoke(this);
-        if(animator != null) {
-            animator.SetBool("dead", true);
-        }   
+        if(!dead) {
+            dead = true;
+            OnDeath?.Invoke(this);
+            if (animator != null)
+            {
+                animator.SetBool("dead", true);
+            }
+
+
+            yield return new WaitForSeconds(2);
+            Destroy(gameObject);
+        }
         
-     
-        yield return new WaitForSeconds(2);
-        Destroy(gameObject);
     }
 
 }
