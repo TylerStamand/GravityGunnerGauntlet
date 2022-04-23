@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
 
 [RequireComponent(typeof(Collider2D))]
 public abstract class PickUp : MonoBehaviour {
@@ -8,6 +8,8 @@ public abstract class PickUp : MonoBehaviour {
     [SerializeField] float rotationSpeed = 20;
     [SerializeField] float floatSpeed;
     [SerializeField] float deltaY;
+
+    public UnityEvent OnPickUp;
 
     float startY;
     bool moveUp; 
@@ -23,6 +25,7 @@ public abstract class PickUp : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D collider) {
         PlayerUnit playerUnit = collider.gameObject.GetComponent<PlayerUnit>();
         if(playerUnit != null) {
+            OnPickUp?.Invoke();
             PickUpAction(playerUnit);
             Destroy(gameObject);
         }

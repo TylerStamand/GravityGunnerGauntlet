@@ -12,6 +12,7 @@ public class DialogueManager : MonoBehaviour
     public int dialogueCounter;
 
     private Queue<string> sentences;
+    private Dialogue currentDialog;
 
     [SerializeField]
     private Animator[] myAnimationControllers;
@@ -25,6 +26,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+        currentDialog = dialogue;   
+
         animator.SetBool("IsOpen", true);
 
         Debug.Log("Starting conversation with " + dialogue.name);
@@ -69,14 +72,15 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.Log("End of conversation");
         animator.SetBool("IsOpen", false);
+        currentDialog.EnvokeOnComplete();
 
         // Open a door to the next area
-        playAnimation(dialogueCounter);
+        //playAnimation(dialogueCounter);
         dialogueCounter++;
 
     }
-    public void playAnimation(int animatorNum)
-    {
-        myAnimationControllers[animatorNum].SetBool("OpenDoor", true);
-    }
+    // public void playAnimation(int animatorNum)
+    // {
+    //     myAnimationControllers[animatorNum].SetBool("OpenDoor", true);
+    // }
 }

@@ -170,6 +170,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     name: Lab A.I.
+    OnComplete:
+      m_PersistentCalls:
+        m_Calls: []
     sentences:
     - This the the Gravity Watch, with it you will be able to manipulate gravity
       in any cardinal direction.
@@ -726,6 +729,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2526588675691830092, guid: 5cafa73db3e6975478afaad96d3e9307, type: 3}
+      propertyPath: OnPickUp.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2526588675691830092, guid: 5cafa73db3e6975478afaad96d3e9307, type: 3}
+      propertyPath: OnPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2526588675691830092, guid: 5cafa73db3e6975478afaad96d3e9307, type: 3}
+      propertyPath: OnPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 704758247}
+    - target: {fileID: 2526588675691830092, guid: 5cafa73db3e6975478afaad96d3e9307, type: 3}
+      propertyPath: OnPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2526588675691830092, guid: 5cafa73db3e6975478afaad96d3e9307, type: 3}
+      propertyPath: OnPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Activate
+      objectReference: {fileID: 0}
+    - target: {fileID: 2526588675691830092, guid: 5cafa73db3e6975478afaad96d3e9307, type: 3}
+      propertyPath: OnPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Door, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2526588675691830092, guid: 5cafa73db3e6975478afaad96d3e9307, type: 3}
+      propertyPath: OnPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2526588675691830095, guid: 5cafa73db3e6975478afaad96d3e9307, type: 3}
       propertyPath: m_Name
       value: GravWatch
@@ -884,6 +915,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     name: Lab A.I.
+    OnComplete:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7131999150736557936}
+          m_TargetAssemblyTypeName: Door, Assembly-CSharp
+          m_MethodName: Activate
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     sentences:
     - 'Good morning, you''ve been asleep for ERROR: interger overflow years.'
     - Would you like a coffee?
@@ -975,6 +1021,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     name: Lab A.I.
+    OnComplete:
+      m_PersistentCalls:
+        m_Calls: []
     sentences:
     - Feast your eyes on the scientist's newest invention.
     - The Bang Boots 3.0, now with recoil compensators to prevent the user legs shattering...we
@@ -12304,6 +12353,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 775467178}
+        m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
+        m_MethodName: triggerDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   moveSpeed: 0
   moveRadius: 1
   canJump: 0
@@ -12751,6 +12815,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &704758247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704758245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3354023533150e489455ecb004dafa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &775467176
 GameObject:
   m_ObjectHideFlags: 0
@@ -12760,7 +12836,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 775467177}
-  - component: {fileID: 775467179}
   - component: {fileID: 775467178}
   m_Layer: 0
   m_Name: DialogueTrigger (3)
@@ -12777,7 +12852,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 775467176}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 43.69, y: 0, z: 0}
+  m_LocalPosition: {x: 43.37, y: -0.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12798,6 +12873,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     name: Lab A.I.
+    OnComplete:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 843610918}
+          m_TargetAssemblyTypeName: Door, Assembly-CSharp
+          m_MethodName: Activate
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     sentences:
     - Nice job destroying that hologram
     - Now on a scale of 1 to 10 with a 1 being not at all and a 10 being extremely,
@@ -12805,32 +12895,6 @@ MonoBehaviour:
     - I will take your silence as a 1, thank you for your input and cooperance for
       this test.
     - Proceed to the next chamber for the next test.
---- !u!61 &775467179
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 775467176}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &827431060
 GameObject:
   m_ObjectHideFlags: 0
@@ -13053,6 +13117,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &843610918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843610916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3354023533150e489455ecb004dafa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &997749934
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13115,6 +13191,34 @@ PrefabInstance:
     - target: {fileID: 6561611400752648340, guid: 1cdd5ddee37ed554484e46a3f49cf4b1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561611400752648343, guid: 1cdd5ddee37ed554484e46a3f49cf4b1, type: 3}
+      propertyPath: OnPickUp.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561611400752648343, guid: 1cdd5ddee37ed554484e46a3f49cf4b1, type: 3}
+      propertyPath: OnPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561611400752648343, guid: 1cdd5ddee37ed554484e46a3f49cf4b1, type: 3}
+      propertyPath: OnPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1676822483}
+    - target: {fileID: 6561611400752648343, guid: 1cdd5ddee37ed554484e46a3f49cf4b1, type: 3}
+      propertyPath: OnPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561611400752648343, guid: 1cdd5ddee37ed554484e46a3f49cf4b1, type: 3}
+      propertyPath: OnPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Activate
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561611400752648343, guid: 1cdd5ddee37ed554484e46a3f49cf4b1, type: 3}
+      propertyPath: OnPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Door, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561611400752648343, guid: 1cdd5ddee37ed554484e46a3f49cf4b1, type: 3}
+      propertyPath: OnPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cdd5ddee37ed554484e46a3f49cf4b1, type: 3}
@@ -13231,7 +13335,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1120086448
 GameObject:
@@ -16068,6 +16172,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1676822483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676822481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3354023533150e489455ecb004dafa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1695932811
 GameObject:
   m_ObjectHideFlags: 0
@@ -16412,6 +16528,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     name: Lab A.I.
+    OnComplete:
+      m_PersistentCalls:
+        m_Calls: []
     sentences:
     - 'Good morning, you''ve been asleep for ERROR: interger overflow years.'
     - Would you like a coffee?
@@ -16975,3 +17094,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5044509956456096390, guid: e791fdcf79b8949468fb65196235fe83, type: 3}
   m_PrefabInstance: {fileID: 7131999150736557931}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7131999150736557936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7131999150736557932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3354023533150e489455ecb004dafa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

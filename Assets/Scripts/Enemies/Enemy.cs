@@ -1,10 +1,12 @@
 using System.Collections;
 using UnityEngine;
-
+using UnityEngine.Events;
 
 public abstract class Enemy : MonoBehaviour, IDamageable
 {
     [SerializeField] int maxHealth;
+
+    public UnityEvent OnDeath;
 
     protected SpriteRenderer spriteRenderer;
     protected Animator animator;
@@ -39,7 +41,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     IEnumerator Die() {
         dead = true;
-
+        OnDeath?.Invoke();
         if(animator != null) {
             animator.SetBool("dead", true);
         }   

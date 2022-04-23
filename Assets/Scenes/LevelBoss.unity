@@ -133,8 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 160268446}
   - component: {fileID: 160268445}
-  - component: {fileID: 160268444}
-  - component: {fileID: 160268443}
   - component: {fileID: 160268447}
   m_Layer: 0
   m_Name: Boss
@@ -143,62 +141,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &160268443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 160268442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_CategoryHash: 0
-  m_labelHash: 0
-  m_SpriteKey: 6.415006e-10
---- !u!114 &160268444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 160268442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Library:
-  - m_Name: walking
-    m_Hash: 0
-    m_CategoryList:
-    - m_Name: W1
-      m_Hash: 0
-      m_Sprite: {fileID: 21300000, guid: 3cbaf9bc2f76314438f0f83493e39174, type: 3}
-    - m_Name: W2
-      m_Hash: 0
-      m_Sprite: {fileID: 21300000, guid: b08ca4151dd190b459ec14c2f0f3c75a, type: 3}
-    - m_Name: W3
-      m_Hash: 0
-      m_Sprite: {fileID: 21300000, guid: a557f89185a9c9145b58982548ac2e4c, type: 3}
-    - m_Name: W4
-      m_Hash: 0
-      m_Sprite: {fileID: 21300000, guid: 9adafbaacdcb65f4da57d3ff622c51e3, type: 3}
-  - m_Name: idle
-    m_Hash: 0
-    m_CategoryList:
-    - m_Name: I1
-      m_Hash: 0
-      m_Sprite: {fileID: 21300000, guid: a557f89185a9c9145b58982548ac2e4c, type: 3}
-  - m_Name: charge
-    m_Hash: 0
-    m_CategoryList:
-    - m_Name: C1
-      m_Hash: 0
-      m_Sprite: {fileID: 21300000, guid: bd0190f32c06a8340b1a304de2a26764, type: 3}
-  m_SpriteLibraryAsset: {fileID: 0}
 --- !u!212 &160268445
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8576,7 +8518,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 0.9875
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
