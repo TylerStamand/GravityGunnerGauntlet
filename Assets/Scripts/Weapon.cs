@@ -19,7 +19,9 @@ public class Weapon : MonoBehaviour
         }
         GameObject parentTransform = transform.parent.gameObject;
         Projectile shot = Instantiate(projectilePrefab, transform.position, transform.rotation);
-        shot.SetParentTransform(parentTransform);
+        Debug.Log(parentTransform.gameObject.name);
+        Physics2D.IgnoreCollision(shot.GetComponent<Collider2D>(), parentTransform.GetComponent<Collider2D>()); 
+       
     }
     
 }

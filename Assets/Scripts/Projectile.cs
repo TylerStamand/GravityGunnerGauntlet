@@ -4,13 +4,11 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(Collider2D))]
-public class Projectile : MonoBehaviour
-{
+public class Projectile : MonoBehaviour {
 
     [SerializeField] int damage = 1;
     [SerializeField] float moveSpeed = 1;
 
-    GameObject parentTransform;
     Animator animator;
     bool hitGround = false;
     new Collider2D collider;
@@ -26,7 +24,7 @@ public class Projectile : MonoBehaviour
 
     void FixedUpdate() {
         if(hitGround) {
-            rigidbody.velocity = Vector2.zero;
+           
         }
       
     }
@@ -34,24 +32,30 @@ public class Projectile : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision) {
         //check if object has IDamageable
         IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
-        if(damageable != null && parentTransform != collision.gameObject) {
-            damageable.TakeDamage(damage);
+        if(damageable != null) {
+            damageable.TakeDamage(damage, transform.position - collision.transform.position);
             Debug.Log(collision.gameObject.name + " took damage");
+            rigidbody.velocity = Vector2.zero;
             Destroy(gameObject);
         }
-        else if(parentTransform != collision.gameObject) {
+        else {
             Debug.Log(collision.gameObject.name);
-            collider.enabled = false;
+            this.collider.enabled = false;
             hitGround = true;
-            animator.SetBool("groundHit", hitGround);
+
+            if(animator != null) {
+                animator.SetBool("groundHit", hitGround);
+            }
+            else {
+                
+                Destroy(gameObject);
+            }
+            rigidbody.velocity = Vector2.zero;
         
         }
        
     }
 
-    public void SetParentTransform(GameObject parentTransform) {
-        this.parentTransform = parentTransform;    
-    }
 
     public void Kill() {
         

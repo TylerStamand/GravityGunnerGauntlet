@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] float moveSpeed = 3;
     [SerializeField] float groundBoost = 5;
     [SerializeField] float shootBoost = 2;
+    [SerializeField] float knockbackForce = 1;
 
     [SerializeField] float jumpCoolDown = .3f;
     
@@ -15,6 +16,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public event Action OnFireEvent;
 
+    public Direction gravityState {get; private set;}
     public bool GravityEnabled {get; set;}
     public bool BootsEnabled {get; set;}
 
@@ -22,8 +24,6 @@ public class PlayerMovement : MonoBehaviour {
     Rigidbody2D rigidBody;
     SpriteRenderer spriteRenderer;
     PlayerControls playerControls;
-    List<Vector2> DirectionVectors;
-    GravityState gravityState;
 
 
     bool isGrounded;
@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour {
         rigidBody.gravityScale = 0;
 
         //set initial gravity to down
-        ChangeGravity(GravityState.Down);
+        ChangeGravity(Direction.Down);
 
         timeSinceLastJump = float.MaxValue;
     }
@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour {
     void ApplySideMovement() {
         float value = 0;
 
-        if(gravityState == GravityState.Up || gravityState == GravityState.Down) {
+        if(gravityState == Direction.Up || gravityState == Direction.Down) {
             value = playerControls.Player.XAxisMove.ReadValue<float>();
             
             Vector3 delta = value * moveSpeed * Time.deltaTime * Vector2.right;
@@ -102,7 +102,7 @@ public class PlayerMovement : MonoBehaviour {
 
         //For flipping sprite based on direction
         #region 
-        if (gravityState == GravityState.Right || gravityState == GravityState.Down) {
+        if (gravityState == Direction.Right || gravityState == Direction.Down) {
             if (value > 0)
             {
                 spriteRenderer.flipX = false;
@@ -140,20 +140,20 @@ public class PlayerMovement : MonoBehaviour {
             switch (context.ReadValue<Vector2>().x)
             {
                 case 1:
-                    ChangeGravity(GravityState.Right);
+                    ChangeGravity(Direction.Right);
                     break;
                 case -1:
-                    ChangeGravity(GravityState.Left);
+                    ChangeGravity(Direction.Left);
                     break;
             }
 
             switch (context.ReadValue<Vector2>().y)
             {
                 case 1:
-                    ChangeGravity(GravityState.Up);
+                    ChangeGravity(Direction.Up);
                     break;
                 case -1:
-                    ChangeGravity(GravityState.Down);
+                    ChangeGravity(Direction.Down);
                     break;
             }
         }
@@ -184,21 +184,21 @@ public class PlayerMovement : MonoBehaviour {
     }
 
 
-    void ChangeGravity(GravityState gravityState) {
+    void ChangeGravity(Direction gravityState) {
 
         this.gravityState = gravityState;
 
         switch(gravityState) {
-            case GravityState.Down: 
+            case Direction.Down: 
                 transform.rotation = Quaternion.Euler(0, 0, 0);
                 break;
-            case GravityState.Left:
+            case Direction.Left:
                 transform.rotation = Quaternion.Euler(0,0,-90);
                 break;
-            case GravityState.Right:
+            case Direction.Right:
                 transform.rotation = Quaternion.Euler(0, 0, 90);
                 break;
-            case GravityState.Up:
+            case Direction.Up:
                 transform.rotation = Quaternion.Euler(0, 0, 180);
                 break;
         }
@@ -221,8 +221,12 @@ public class PlayerMovement : MonoBehaviour {
         }
 
     }
+
+    public void ApplyKnockBack(Vector3 knockbackDirection) {
+       // rigidBody.AddForce( knockbackDirection * knockbackForce, ForceMode2D.Impulse );
+    }
 }
 
-public enum GravityState {
+public enum Direction {
     Up, Down, Left, Right
 }

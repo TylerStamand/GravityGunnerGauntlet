@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public abstract class Enemy : MonoBehaviour, IDamageable
 {
-    [SerializeField] int maxHealth;
+    [SerializeField] protected int maxHealth;
 
     public UnityEvent<Enemy> OnDeath;
 
@@ -24,7 +24,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         
     }
 
-    public void TakeDamage(int damage) {
+    public virtual void TakeDamage(int damage, Vector3 knockbackVector) {
         currentHealth--;
         if(currentHealth <= 0) {
             StartCoroutine(Die());
@@ -33,9 +33,6 @@ public abstract class Enemy : MonoBehaviour, IDamageable
             if(animator != null) {
                 animator.SetTrigger("hit");
             }
-            
-        
-            
         }
     }
 

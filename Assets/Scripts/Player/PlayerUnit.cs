@@ -7,6 +7,8 @@ public class PlayerUnit : MonoBehaviour, IDamageable {
     [SerializeField] PlayerData playerData;
 
     [SerializeField] int maxHealth = 3;
+    [SerializeField] float damageCoolDown = 1;
+
     [SerializeField] Weapon weapon;
     
     [SerializeField] SpriteLibraryAsset noBoots;
@@ -19,26 +21,38 @@ public class PlayerUnit : MonoBehaviour, IDamageable {
     PlayerMovement playerMovement;
     SpriteLibrary spriteLibrary;
     
-
+    float timeSinceLastDamage;
     int currentHealth;
 
     void Awake() {
         playerMovement = GetComponent<PlayerMovement>();
         spriteLibrary = GetComponent<SpriteLibrary>();
+        timeSinceLastDamage = float.MaxValue;
 
         Initialize();
         
     }
 
-    public void TakeDamage(int damage) {
-        ChangeHealth(currentHealth - 1);
+    void Update() {
+        timeSinceLastDamage += Time.deltaTime;
+    }
 
-        Debug.Log("Damage taken " + damage + " , now at " + currentHealth + " health");
+    public void TakeDamage(int damage, Vector3 knockbackDirection) {
+        if(timeSinceLastDamage >= damageCoolDown) {
+            playerMovement.ApplyKnockBack(knockbackDirection);
+            ChangeHealth(currentHealth - 1);
 
-        if(currentHealth <= 0) {
-            //Change state to dead
-            Debug.Log("Dead");
+            Debug.Log("Damage taken " + damage + " , now at " + currentHealth + " health");
+
+            if (currentHealth <= 0)
+            {
+                //Change state to dead
+                Debug.Log("Dead");
+            }
+
+            timeSinceLastDamage = 0;
         }
+      
     }
 
 
@@ -58,6 +72,10 @@ public class PlayerUnit : MonoBehaviour, IDamageable {
         playerMovement.GravityEnabled = true;
         spriteLibrary.spriteLibraryAsset = bootsAndGrav;
         playerData.GravityEnabled = true;
+    }
+
+    public Direction GetGravityState() {
+        return playerMovement.gravityState;
     }
 
     void Initialize() {
@@ -101,5 +119,7 @@ public class PlayerUnit : MonoBehaviour, IDamageable {
     {
         weapon.Shoot();
     }
+
+
 
 }

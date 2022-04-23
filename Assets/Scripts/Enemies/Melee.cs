@@ -50,7 +50,7 @@ public class Melee : Enemy {
         PlayerUnit player = collision.gameObject.GetComponent<PlayerUnit>();
 
         if(player != null) {
-            player.TakeDamage(damage);
+            player.TakeDamage(damage, transform.position - collision.transform.position );
         }
     }
 

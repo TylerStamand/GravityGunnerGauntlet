@@ -8,6 +8,10 @@ public class CameraMovement : MonoBehaviour
 
     void Awake() {
         GameManager.Instance.PlayerSpawn += SetPlayer;
+        playerUnit = FindObjectOfType<PlayerUnit>();
+        if(playerUnit != null) {
+            SetPlayer(playerUnit);
+        }
     }
 
     void Update() {
