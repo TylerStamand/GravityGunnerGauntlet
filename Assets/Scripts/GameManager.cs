@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -131,8 +132,14 @@ public class GameManager : MonoBehaviour
     }
 
     void HandlePlayerDeath() {
+        StartCoroutine(PlayerDeath());
+       
+    }
+
+    IEnumerator PlayerDeath() {
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
         //Show death scene, add timer then restart level
+        yield return new WaitForSeconds(3);
         GoToLevel(sceneIndex);
     }
 

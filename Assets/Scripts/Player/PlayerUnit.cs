@@ -23,13 +23,14 @@ public class PlayerUnit : MonoBehaviour, IDamageable {
 
     PlayerMovement playerMovement;
     SpriteLibrary spriteLibrary;
+    Animator animator;
     
     float timeSinceLastDamage;
     
-
     void Awake() {
         playerMovement = GetComponent<PlayerMovement>();
         spriteLibrary = GetComponent<SpriteLibrary>();
+        animator = GetComponent<Animator>();
         timeSinceLastDamage = float.MaxValue;
         
         Initialize();
@@ -42,8 +43,10 @@ public class PlayerUnit : MonoBehaviour, IDamageable {
 
     public void TakeDamage(int damage, Vector3 knockbackDirection) {
         if(timeSinceLastDamage >= damageCoolDown) {
+            animator.SetTrigger("hit");
             playerMovement.ApplyKnockBack(knockbackDirection);
             ChangeHealth(CurrentHealth - damage);
+            
 
             Debug.Log("Damage taken " + damage + " , now at " + CurrentHealth + " health");
 
@@ -51,6 +54,8 @@ public class PlayerUnit : MonoBehaviour, IDamageable {
             {
                 //Change state to dead
                 Debug.Log("Dead");
+                animator.SetBool("dead", true);
+                playerMovement.enabled = false;
                 OnDead?.Invoke();
             }
 

@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void Update() {
-
+        
         CheckIfGrounded(); 
 
         ApplySideMovement();

@@ -238,7 +238,7 @@ SpriteRenderer:
   m_SortingLayerID: 1811375201
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 09b9b2956cfbc5f41964485997864e50, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e4c91da973a0b684bb169d2f158015bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -264,9 +264,9 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.0036101341, y: 0.09828693}
   m_SpriteTilingProperty:
-    border: {x: 1.6764706, y: 0.30718955, z: 1.6535947, w: 0.28104576}
-    pivot: {x: 0.5008832, y: 0.45114353}
-    oldSize: {x: 4.013072, y: 1.8137255}
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4.013072, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -384,5 +384,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Library: []
-  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 267e998881fa1964391207c492ba2247, type: 3}
+  m_Library:
+  - m_Name: hit
+    m_Hash: 0
+    m_CategoryList:
+    - m_Name: Entry
+      m_Hash: 0
+      m_Sprite: {fileID: 21300000, guid: e4c91da973a0b684bb169d2f158015bf, type: 3}
+    - m_Name: Entry_0
+      m_Hash: 0
+      m_Sprite: {fileID: 21300000, guid: 48b911409af9fdb4cbda07f1353fc3de, type: 3}
+  - m_Name: dead
+    m_Hash: 0
+    m_CategoryList:
+    - m_Name: Entry
+      m_Hash: 0
+      m_Sprite: {fileID: 21300000, guid: dc87047fde79f384da196dfa8b3e0599, type: 3}
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 35d7d5ebcb1a1d845b99a2fbd096f696, type: 3}
