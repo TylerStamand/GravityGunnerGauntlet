@@ -19,7 +19,6 @@ public class Melee : Enemy {
 
     Vector3 startPos = Vector3.zero;
 
-    bool moveRight;
     bool spriteFliped;
     float timeSinceLastJump;
 
@@ -32,7 +31,6 @@ public class Melee : Enemy {
         //turn off default rigidBody Gravity;
         rigidBody.gravityScale = 0;
         startPos = transform.position;
-        moveRight = false;
         spriteFliped = !spriteRenderer.flipX;
 
        
