@@ -178,8 +178,8 @@ MonoBehaviour:
       in any cardinal direction.
     - To use it, press the "arrow key" in the direction you want gravity to switch
       to.
-    - Keep in mind that it only switches your gravity, we haven't completed the prototype
-      that can switch everythings gravity... yet.
+    - Keep in mind that it only switches your gravity, we haven't completed
+    - the prototype that can switch everythings gravity... yet.
     - Proceed to the next chamber to test it out before we throw you out there.
 --- !u!61 &11050423
 BoxCollider2D:
@@ -998,8 +998,8 @@ MonoBehaviour:
         m_Calls: []
     sentences:
     - Feast your eyes on the scientist's newest invention.
-    - The Bang Boots 3.0, now with recoil compensators to prevent the users legs
-      from shattering...we think.
+    - 'The Bang Boots 3.0, now with recoil compensators to prevent '
+    - the users legs from shattering...we think.
     - Press "space" to fire a concentrated blast of energy that will launch you upwards.
     - Proceed to the next chamber and defeat the hologram we have set to begin the
       first test of these boots.

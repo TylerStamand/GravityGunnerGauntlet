@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using DG.Tweening;
 
 public class Melee : Enemy {
 
@@ -16,9 +18,13 @@ public class Melee : Enemy {
     Rigidbody2D rigidBody;
 
     Vector3 startPos = Vector3.zero;
+
     bool moveRight;
     bool spriteFliped;
     float timeSinceLastJump;
+
+
+    Sequence tweens;
 
     protected override void Awake() {
         base.Awake();
@@ -26,15 +32,30 @@ public class Melee : Enemy {
         //turn off default rigidBody Gravity;
         rigidBody.gravityScale = 0;
         startPos = transform.position;
-        moveRight = true;
-        spriteFliped = spriteRenderer.flipX;
+        moveRight = false;
+        spriteFliped = !spriteRenderer.flipX;
+
+        transform.position = transform.position + transform.right * moveRadius;
+
+        tweens.Append(transform.DOMove(transform.position - transform.right * 2 * moveRadius, moveSpeed)
+            .SetEase(Ease.Linear)
+            .SetLoops(-1, LoopType.Yoyo)
+            .OnStepComplete( () => {spriteFliped = !spriteFliped; spriteRenderer.flipX = spriteFliped;}  ));
+
+       
+    
 
     }
     
     protected override void Update() {
-        if(!dead) {
-            Move();
+        if(dead) {
+            rigidBody.DOKill();
         }
+        // if(!dead && canJump && timeSinceLastJump > jumpCoolDown) {
+            
+        //     tweens.Join(transform.DOMove(transform.position + transform.up * jumpForce, .3f));
+        //     timeSinceLastJump = 0;
+        // }
         timeSinceLastJump += Time.deltaTime;
     }
 
@@ -70,47 +91,9 @@ public class Melee : Enemy {
         Gizmos.DrawLine(leftBound, rightBound);
     }
 
-    void Move() {
-        //For moving left and right
-        Vector3 rightMovement = Vector3.Scale(transform.right, transform.position);
-        Vector3 initalPoint = Vector3.Scale(transform.right, startPos);
+   
 
-
-        if (Vector3.Distance(rightMovement, initalPoint) >= Vector3.Distance(initalPoint, initalPoint + transform.right * moveRadius))
-        {
-            if(moveRight == false) {
-                moveRight = true;
-                spriteFliped = !spriteFliped;
-                spriteRenderer.flipX = spriteFliped;
-                
-            }
-            else {
-                moveRight = false;
-                spriteFliped = !spriteFliped;
-                spriteRenderer.flipX = spriteFliped;
-            }
-            
-        }
-
-        if (moveRight)
-        {
-            transform.position = transform.position + transform.right * moveSpeed * Time.deltaTime;
-        }
-        else
-        {
-            transform.position = transform.position - transform.right * moveSpeed * Time.deltaTime;
-        }
-
-        //For jumping (if enabled)
-        if(canJump) {
-            if(timeSinceLastJump >= jumpCoolDown ) {
-                rigidBody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
-                timeSinceLastJump = 0;
-            }
-        }
-
-        
-    }
+   
 
 
 
