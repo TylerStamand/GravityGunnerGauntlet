@@ -15,14 +15,16 @@ public class PlayerUnit : MonoBehaviour, IDamageable {
     [SerializeField] SpriteLibraryAsset boots;
     [SerializeField] SpriteLibraryAsset bootsAndGrav;
 
+    public int CurrentHealth {get; private set;} 
 
+    public event Action OnDead;
     public event Action<int> OnHealthChange;
 
     PlayerMovement playerMovement;
     SpriteLibrary spriteLibrary;
     
     float timeSinceLastDamage;
-    int currentHealth;
+    
 
     void Awake() {
         playerMovement = GetComponent<PlayerMovement>();
@@ -40,14 +42,15 @@ public class PlayerUnit : MonoBehaviour, IDamageable {
     public void TakeDamage(int damage, Vector3 knockbackDirection) {
         if(timeSinceLastDamage >= damageCoolDown) {
             playerMovement.ApplyKnockBack(knockbackDirection);
-            ChangeHealth(currentHealth - 1);
+            ChangeHealth(CurrentHealth - damage);
 
-            Debug.Log("Damage taken " + damage + " , now at " + currentHealth + " health");
+            Debug.Log("Damage taken " + damage + " , now at " + CurrentHealth + " health");
 
-            if (currentHealth <= 0)
+            if (CurrentHealth <= 0)
             {
                 //Change state to dead
                 Debug.Log("Dead");
+                OnDead?.Invoke();
             }
 
             timeSinceLastDamage = 0;
@@ -111,8 +114,8 @@ public class PlayerUnit : MonoBehaviour, IDamageable {
         {
             newHealth = 0;
         }
-        currentHealth = newHealth;
-        OnHealthChange?.Invoke(currentHealth);
+        CurrentHealth = newHealth;
+        OnHealthChange?.Invoke(CurrentHealth);
     }
 
     void Shoot()

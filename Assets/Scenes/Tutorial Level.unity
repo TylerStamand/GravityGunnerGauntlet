@@ -30286,7 +30286,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   moveSpeed: 0
-  moveRadius: 1
+  moveRadius: 0
   canJump: 0
   jumpCoolDown: 0
   jumpForce: 0

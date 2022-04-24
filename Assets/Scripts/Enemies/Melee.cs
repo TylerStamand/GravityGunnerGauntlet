@@ -35,28 +35,36 @@ public class Melee : Enemy {
         moveRight = false;
         spriteFliped = !spriteRenderer.flipX;
 
-        transform.position = transform.position + transform.right * moveRadius;
-
-        tweens.Append(transform.DOMove(transform.position - transform.right * 2 * moveRadius, moveSpeed)
+       
+        if(moveRadius > 0) {
+            transform.position = transform.position + transform.right * moveRadius;
+            tweens.Append(transform.DOMove(transform.position - transform.right * 2 * moveRadius, moveSpeed)
             .SetEase(Ease.Linear)
             .SetLoops(-1, LoopType.Yoyo)
-            .OnStepComplete( () => {spriteFliped = !spriteFliped; spriteRenderer.flipX = spriteFliped;}  ));
+            .OnStepComplete(() => { spriteFliped = !spriteFliped; spriteRenderer.flipX = spriteFliped; }));
 
-       
+        }
+        
+    //    if(canJump) {
+    //         GameObject parent = new GameObject("parent");
+    //         parent.transform.position = transform.position;
+    //         parent.transform.rotation = transform.rotation;
+    //         transform.SetParent(parent.transform); 
+    //    }
     
 
     }
     
     protected override void Update() {
         if(dead) {
-            rigidBody.DOKill();
+            transform.DOKill();
         }
         // if(!dead && canJump && timeSinceLastJump > jumpCoolDown) {
             
-        //     tweens.Join(transform.DOMove(transform.position + transform.up * jumpForce, .3f));
+        //     transform.parent.DOMove(transform.position + transform.parent.up * jumpForce, .3f).SetLoops(1, LoopType.Yoyo);
         //     timeSinceLastJump = 0;
         // }
-        timeSinceLastJump += Time.deltaTime;
+        // timeSinceLastJump += Time.deltaTime;
     }
 
     void FixedUpdate() {

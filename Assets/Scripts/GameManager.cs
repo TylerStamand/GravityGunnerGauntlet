@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     
     public bool AllEnemiesKilled;
 
+    bool HUDLoaded;
+
     // Allows us to refer to the game manager as an instance
     public static GameManager Instance
     {
@@ -27,13 +29,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
+    public PlayerUnit PlayerUnit;
     List<Enemy> levelEnemies;
 
     // If there is another game manager destroy it
     private void Awake()
     {
-
+        HUDLoaded = false;
         if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
@@ -48,10 +50,15 @@ public class GameManager : MonoBehaviour
     // Used to change level
     public void GoToLevel(int levelNumber)
     {
+        if(HUDLoaded == true) {
+            SceneManager.UnloadSceneAsync("HUD");
+            HUDLoaded = false;
+        }
+        
         SceneManager.LoadScene(levelNumber);
-        //IF NOT MAIN MENU
-        if(levelNumber != 0) {
-
+        //IF LEVEL
+        if(levelNumber > 0 || levelNumber < 5) {
+            
             SceneManager.sceneLoaded += SetPlayer;
             SceneManager.sceneLoaded += SetEnemies;
         }
@@ -71,21 +78,31 @@ public class GameManager : MonoBehaviour
 
 
     void SetPlayer(Scene scene, LoadSceneMode mode) {
+        if(PlayerUnit != null) {
+            PlayerUnit.OnDead -= HandlePlayerDeath;
+        }
+
         GameObject playerSpawn = GameObject.FindGameObjectWithTag("PlayerSpawn");
         if (playerSpawn != null)
         {
-            PlayerUnit playerUnit = Instantiate(playerUnitPrefab, playerSpawn.transform.position, Quaternion.identity);
-            PlayerSpawn?.Invoke(playerUnit);
+            PlayerUnit = Instantiate(playerUnitPrefab, playerSpawn.transform.position, Quaternion.identity);
+            PlayerUnit.OnDead += HandlePlayerDeath;
+
+            PlayerSpawn?.Invoke(PlayerUnit);
             if (scene.buildIndex == 1)
             {
-                playerUnit.ResetPlayer();
+                PlayerUnit.ResetPlayer();
                 Debug.Log("Reset Player Data from gamescript");
             }
+
         }
+        
         else
         {
             Debug.Assert(false, "No player spawn found, not spawning player. Try adding an object with the tag of PlayerSpawn");
         }
+        SceneManager.LoadSceneAsync("HUD", LoadSceneMode.Additive);
+        HUDLoaded = true;
         SceneManager.sceneLoaded -= SetPlayer;
     }
 
@@ -111,6 +128,12 @@ public class GameManager : MonoBehaviour
         if(levelEnemies.Count == 0) {
             AllEnemiesKilled = true;
         }
+    }
+
+    void HandlePlayerDeath() {
+        int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        //Show death scene, add timer then restart level
+        GoToLevel(sceneIndex);
     }
 
 }

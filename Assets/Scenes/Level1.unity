@@ -9735,6 +9735,10 @@ PrefabInstance:
       propertyPath: moveRadius
       value: 2.84
       objectReference: {fileID: 0}
+    - target: {fileID: 2184082264369274478, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
+      propertyPath: jumpCoolDown
+      value: 3.71
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
 --- !u!4 &550070172 stripped
@@ -106620,6 +106624,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rat1
       objectReference: {fileID: 0}
+    - target: {fileID: 2184082264369274472, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2184082264369274476, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -106638,7 +106646,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2184082264369274476, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.08
+      value: 1.23
       objectReference: {fileID: 0}
     - target: {fileID: 2184082264369274476, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -106675,6 +106683,10 @@ PrefabInstance:
     - target: {fileID: 2184082264369274478, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
       propertyPath: canJump
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2184082264369274478, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
+      propertyPath: moveSpeed
+      value: 1.62
       objectReference: {fileID: 0}
     - target: {fileID: 2184082264369274478, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
       propertyPath: moveRadius
