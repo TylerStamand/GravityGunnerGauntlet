@@ -19,6 +19,7 @@ public class PlayerUnit : MonoBehaviour, IDamageable {
 
     public event Action OnDead;
     public event Action<int> OnHealthChange;
+    public event Action<bool> OnGravStatusChange;
 
     PlayerMovement playerMovement;
     SpriteLibrary spriteLibrary;
@@ -30,7 +31,7 @@ public class PlayerUnit : MonoBehaviour, IDamageable {
         playerMovement = GetComponent<PlayerMovement>();
         spriteLibrary = GetComponent<SpriteLibrary>();
         timeSinceLastDamage = float.MaxValue;
-
+        
         Initialize();
         
     }
@@ -86,6 +87,7 @@ public class PlayerUnit : MonoBehaviour, IDamageable {
         if (playerMovement != null)
         {
             playerMovement.OnFireEvent += Shoot;
+            playerMovement.OnGravStatusChange += (ready) => OnGravStatusChange?.Invoke(ready);
             playerMovement.BootsEnabled = playerData.BootsEnabled;
             playerMovement.GravityEnabled = playerData.GravityEnabled;
         }

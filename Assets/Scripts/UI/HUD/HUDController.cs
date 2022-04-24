@@ -1,19 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HUDController : MonoBehaviour
 {
     [SerializeField] GameObject heartPrefab;
     [SerializeField] GameObject heartParent;
 
+    [Header("Grav Watch")]
+    [SerializeField] Image gravWatch;
+    [SerializeField] Color gravNotReadyColor;
+
     List<GameObject> hearts;
 
     void Awake()
     {
         GameManager.Instance.PlayerUnit.OnHealthChange += UpdateHearts;
+        GameManager.Instance.PlayerUnit.OnGravStatusChange += UpdateGrav;
         hearts = new List<GameObject>();
         UpdateHearts(GameManager.Instance.PlayerUnit.CurrentHealth);
+        UpdateGrav(true);
     }
 
     void UpdateHearts(int health)
@@ -25,6 +32,16 @@ public class HUDController : MonoBehaviour
             GameObject heart = Instantiate(heartPrefab, Vector3.zero, Quaternion.identity);
             heart.transform.SetParent(heartParent.transform);
             hearts.Add(heart);
+        }
+    }
+
+    void UpdateGrav(bool ready) {
+        if(ready) {
+            gravWatch.color = Color.white;
+        
+        }
+        else {
+            gravWatch.color = gravNotReadyColor;
         }
     }
 

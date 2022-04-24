@@ -10,11 +10,13 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] float knockbackForce = 1;
 
     [SerializeField] float jumpCoolDown = .3f;
+    [SerializeField] float gravCoolDown = 1f;
     
     [SerializeField] Collider2D groundCollider;
     [SerializeField] LayerMask terrainLayer;
 
     public event Action OnFireEvent;
+    public event Action<bool> OnGravStatusChange;
 
     public Direction gravityState {get; private set;}
     public bool GravityEnabled {get; set;}
@@ -27,7 +29,9 @@ public class PlayerMovement : MonoBehaviour {
 
 
     bool isGrounded;
+    bool gravReady;
     float timeSinceLastJump;
+    float timeSinceLastGrav;
     
 
     void Awake() {
@@ -43,6 +47,7 @@ public class PlayerMovement : MonoBehaviour {
         ChangeGravity(Direction.Down);
 
         timeSinceLastJump = float.MaxValue;
+        gravReady = true;
     }
 
     void OnEnable() {
@@ -62,7 +67,12 @@ public class PlayerMovement : MonoBehaviour {
         ApplySideMovement();
 
         timeSinceLastJump += Time.deltaTime;
+        timeSinceLastGrav += Time.deltaTime;
 
+        if(!gravReady && timeSinceLastGrav > gravCoolDown) {
+            gravReady = true;
+            OnGravStatusChange?.Invoke(gravReady);
+        }
     }
 
     void FixedUpdate() {
@@ -137,24 +147,27 @@ public class PlayerMovement : MonoBehaviour {
 
     void OnSwitchGravity(InputAction.CallbackContext context) {
         if(GravityEnabled) {
-            switch (context.ReadValue<Vector2>().x)
+            if (timeSinceLastGrav > gravCoolDown)
             {
-                case 1:
-                    ChangeGravity(Direction.Right);
-                    break;
-                case -1:
-                    ChangeGravity(Direction.Left);
-                    break;
-            }
+                switch (context.ReadValue<Vector2>().x)
+                {
+                    case 1:
+                        ChangeGravity(Direction.Right);
+                        break;
+                    case -1:
+                        ChangeGravity(Direction.Left);
+                        break;
+                }
 
-            switch (context.ReadValue<Vector2>().y)
-            {
-                case 1:
-                    ChangeGravity(Direction.Up);
-                    break;
-                case -1:
-                    ChangeGravity(Direction.Down);
-                    break;
+                switch (context.ReadValue<Vector2>().y)
+                {
+                    case 1:
+                        ChangeGravity(Direction.Up);
+                        break;
+                    case -1:
+                        ChangeGravity(Direction.Down);
+                        break;
+                }
             }
         }
     }
@@ -176,6 +189,7 @@ public class PlayerMovement : MonoBehaviour {
                     OnFireEvent?.Invoke();
 
                     timeSinceLastJump = 0;
+            
                 }
                 
             }
@@ -185,26 +199,32 @@ public class PlayerMovement : MonoBehaviour {
 
 
     void ChangeGravity(Direction gravityState) {
-
-        this.gravityState = gravityState;
-
-        switch(gravityState) {
-            case Direction.Down: 
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-                break;
-            case Direction.Left:
-                transform.rotation = Quaternion.Euler(0,0,-90);
-                break;
-            case Direction.Right:
-                transform.rotation = Quaternion.Euler(0, 0, 90);
-                break;
-            case Direction.Up:
-                transform.rotation = Quaternion.Euler(0, 0, 180);
-                break;
-        }
         
+            this.gravityState = gravityState;
+
+            switch (gravityState)
+            {
+                case Direction.Down:
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
+                    break;
+                case Direction.Left:
+                    transform.rotation = Quaternion.Euler(0, 0, -90);
+                    break;
+                case Direction.Right:
+                    transform.rotation = Quaternion.Euler(0, 0, 90);
+                    break;
+                case Direction.Up:
+                    transform.rotation = Quaternion.Euler(0, 0, 180);
+                    break;
+            }
+
+
+            rigidBody.velocity = Vector2.zero;
+            timeSinceLastGrav = 0;
+            gravReady = false;
+            OnGravStatusChange?.Invoke(gravReady);
         
-        rigidBody.velocity = Vector2.zero;
+     
     }
 
     void CheckIfGrounded() {
