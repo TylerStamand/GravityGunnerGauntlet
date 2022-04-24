@@ -1,6 +1,9 @@
 using UnityEngine;
 
 public class BossWall : MonoBehaviour {
+
+    [SerializeField] ParticleSystem electricityParticles;
+
     static float electicityDuration = 10;
     public Direction Side;
 
@@ -18,6 +21,7 @@ public class BossWall : MonoBehaviour {
             timeElectricityOn += Time.deltaTime;
             if(timeElectricityOn >= electicityDuration) {
                 electicityOn = false;
+                electricityParticles.Stop();
             }
         }
     }
@@ -36,6 +40,7 @@ public class BossWall : MonoBehaviour {
 
     public void ActivateElectricity() {
         electicityOn = true;
+        electricityParticles.Play();
         timeElectricityOn = 0;
     }
 }
