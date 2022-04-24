@@ -63,14 +63,8 @@ public class GameManager : MonoBehaviour
             SceneManager.sceneLoaded += SetPlayer;
             SceneManager.sceneLoaded += SetEnemies;
         }
-
-
-
-        
         
     }
-
-
 
     public void QuitGame()
     {

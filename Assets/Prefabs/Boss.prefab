@@ -77,7 +77,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1811375201
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a557f89185a9c9145b58982548ac2e4c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -126,11 +126,14 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 64
   weapon: {fileID: 2381311470628905134}
   walkSpeed: 26.63
   chargeVelocity: 78.55
-  chargeCoolDown: 10
-  fastChargeCoolDown: 5
+  chargeCoolDown: 7
+  fastChargeCoolDown: 3
   shootCoolDown: 2
   fastShootCoolDown: 1
 --- !u!61 &2381311470593075599

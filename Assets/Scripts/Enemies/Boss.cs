@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Boss : Enemy
 {
+    [SerializeField] LayerMask playerMask;
     [SerializeField] Weapon weapon;
 
     [Header("Walking")]
@@ -35,7 +36,7 @@ public class Boss : Enemy
     protected override void Awake() {
         base.Awake();
 
-        player = FindObjectOfType<PlayerUnit>();
+      
         rigidbody = GetComponent<Rigidbody2D>();
 
         rigidbody.gravityScale = 0;
@@ -50,20 +51,34 @@ public class Boss : Enemy
     protected override void Update()
     {
         base.Update();
+
+
+        if(player == null) {
+            Collider2D collider = Physics2D.OverlapCircle(transform.position, 5, playerMask);
+            player = collider?.gameObject.GetComponent<PlayerUnit>();
+            if(player != null) {
+                Charge(Direction.Up);
+            }else {
+                return;
+            }
+        }
+
         timeSinceLastCharge += Time.deltaTime;
         timeSinceLastShot += Time.deltaTime;
 
         if(phase == 0) {
             if (timeSinceLastCharge >= chargeCoolDown && !isCharging)
             {
-                Charge();
+                Direction playerGravityState = player.GetGravityState();
+                Charge(playerGravityState);
                 timeSinceLastCharge = 0;
             }
         }
 
         else if(phase == 1) {
             if(timeSinceLastCharge >= chargeCoolDown && !isCharging) {
-                Charge();
+                Direction playerGravityState = player.GetGravityState();
+                Charge(playerGravityState);
                 timeSinceLastCharge = 0;
             }
             if(timeSinceLastShot >= shootCoolDown && !isCharging) {
@@ -76,7 +91,8 @@ public class Boss : Enemy
 
         else if(phase == 2) {
             if(timeSinceLastCharge >= fastChargeCoolDown && !isCharging) {
-                Charge();
+                Direction playerGravityState = player.GetGravityState();
+                Charge(playerGravityState);
                 timeSinceLastCharge = 0;
             }
             if(timeSinceLastShot >= fastShootCoolDown && !isCharging) {
@@ -157,16 +173,16 @@ public class Boss : Enemy
 
     }
 
-    void Charge() {
-        Direction playerGravityState = player.GetGravityState();
-        CurrentDirection = playerGravityState;
+    void Charge(Direction chargeDirection) {
+        
+        CurrentDirection = chargeDirection;
         isCharging = true;
         isWalking = false;
         spriteRenderer.flipX = spriteFlipDefault;
         animator.SetBool("walking", false);
         animator.SetBool("charging", true);
         
-        switch (playerGravityState)
+        switch (chargeDirection)
         {
             case Direction.Down:
                 transform.rotation = Quaternion.Euler(0, 0, -90);
