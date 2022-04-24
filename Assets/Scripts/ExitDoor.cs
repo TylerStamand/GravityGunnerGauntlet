@@ -13,14 +13,15 @@ public class ExitDoor : MonoBehaviour
     bool canOpen;
 
     void Awake() {
-        animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();  
+        canOpen = false;
     }
 
     void Update() {
         if(openOnEnemiesKilled && GameManager.Instance.AllEnemiesKilled) {
             if(canOpen != true) {
                 canOpen = true;
-                animator.SetBool("Open", true);
+                animator.SetBool("OpenDoor", true);
             }
         }
     }

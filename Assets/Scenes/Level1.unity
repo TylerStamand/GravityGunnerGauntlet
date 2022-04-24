@@ -185,6 +185,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fly1
       objectReference: {fileID: 0}
+    - target: {fileID: 1330097555286555388, guid: e394153d89d8e9043a5875dcf40ea2c5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1330097555286555389, guid: e394153d89d8e9043a5875dcf40ea2c5, type: 3}
       propertyPath: moveSpeed
       value: 2.49
@@ -9534,6 +9538,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rat4
       objectReference: {fileID: 0}
+    - target: {fileID: 2184082264369274465, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2184082264369274476, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -9609,6 +9617,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rat7
       objectReference: {fileID: 0}
+    - target: {fileID: 2184082264369274465, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2184082264369274476, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -9678,6 +9690,10 @@ PrefabInstance:
     - target: {fileID: 2184082264369274465, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
       propertyPath: m_Name
       value: Rat9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2184082264369274465, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2184082264369274476, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
       propertyPath: m_RootOrder
@@ -9800,6 +9816,10 @@ PrefabInstance:
     - target: {fileID: 1733086633466050118, guid: b1fa2bb5f8b795d4a9bed9151469bc8b, type: 3}
       propertyPath: m_Name
       value: Barnacle3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733086633466050118, guid: b1fa2bb5f8b795d4a9bed9151469bc8b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1fa2bb5f8b795d4a9bed9151469bc8b, type: 3}
@@ -10052,6 +10072,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barnacle2
       objectReference: {fileID: 0}
+    - target: {fileID: 1733086633466050118, guid: b1fa2bb5f8b795d4a9bed9151469bc8b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1fa2bb5f8b795d4a9bed9151469bc8b, type: 3}
 --- !u!4 &759520752 stripped
@@ -10069,6 +10093,10 @@ PrefabInstance:
     - target: {fileID: 1330097555286555388, guid: e394153d89d8e9043a5875dcf40ea2c5, type: 3}
       propertyPath: m_Name
       value: Fly4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1330097555286555388, guid: e394153d89d8e9043a5875dcf40ea2c5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1330097555286555389, guid: e394153d89d8e9043a5875dcf40ea2c5, type: 3}
       propertyPath: moveSpeed
@@ -10143,6 +10171,10 @@ PrefabInstance:
     - target: {fileID: 2184082264369274465, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
       propertyPath: m_Name
       value: Rat2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2184082264369274465, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2184082264369274476, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
       propertyPath: m_RootOrder
@@ -10257,6 +10289,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barnacle4
       objectReference: {fileID: 0}
+    - target: {fileID: 1733086633466050118, guid: b1fa2bb5f8b795d4a9bed9151469bc8b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1fa2bb5f8b795d4a9bed9151469bc8b, type: 3}
 --- !u!4 &847840231 stripped
@@ -10274,6 +10310,10 @@ PrefabInstance:
     - target: {fileID: 1330097555286555388, guid: e394153d89d8e9043a5875dcf40ea2c5, type: 3}
       propertyPath: m_Name
       value: Fly3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1330097555286555388, guid: e394153d89d8e9043a5875dcf40ea2c5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1330097555286555389, guid: e394153d89d8e9043a5875dcf40ea2c5, type: 3}
       propertyPath: moveSpeed
@@ -10354,6 +10394,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fly2
       objectReference: {fileID: 0}
+    - target: {fileID: 1330097555286555388, guid: e394153d89d8e9043a5875dcf40ea2c5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1330097555286555389, guid: e394153d89d8e9043a5875dcf40ea2c5, type: 3}
       propertyPath: moveSpeed
       value: 2.49
@@ -10427,6 +10471,10 @@ PrefabInstance:
     - target: {fileID: 1330097555286555388, guid: e394153d89d8e9043a5875dcf40ea2c5, type: 3}
       propertyPath: m_Name
       value: Fly5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1330097555286555388, guid: e394153d89d8e9043a5875dcf40ea2c5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1330097555286555389, guid: e394153d89d8e9043a5875dcf40ea2c5, type: 3}
       propertyPath: maxHealth
@@ -106554,6 +106602,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rat8
       objectReference: {fileID: 0}
+    - target: {fileID: 2184082264369274465, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2184082264369274476, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -106623,6 +106675,10 @@ PrefabInstance:
     - target: {fileID: 2184082264369274465, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
       propertyPath: m_Name
       value: Rat1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2184082264369274465, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2184082264369274472, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
       propertyPath: m_Interpolate
@@ -106710,6 +106766,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rat5
       objectReference: {fileID: 0}
+    - target: {fileID: 2184082264369274465, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2184082264369274476, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -106779,6 +106839,10 @@ PrefabInstance:
     - target: {fileID: 2184082264369274465, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
       propertyPath: m_Name
       value: Rat3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2184082264369274465, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2184082264369274476, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
       propertyPath: m_RootOrder
@@ -106972,6 +107036,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rat6
       objectReference: {fileID: 0}
+    - target: {fileID: 2184082264369274465, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2184082264369274476, guid: c0f060bf4635e9746bc4aa6e9409c67a, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -107090,6 +107158,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barnacle1
       objectReference: {fileID: 0}
+    - target: {fileID: 1733086633466050118, guid: b1fa2bb5f8b795d4a9bed9151469bc8b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1fa2bb5f8b795d4a9bed9151469bc8b, type: 3}
 --- !u!4 &1913655745 stripped
@@ -107151,6 +107223,10 @@ PrefabInstance:
     - target: {fileID: 1733086633466050118, guid: b1fa2bb5f8b795d4a9bed9151469bc8b, type: 3}
       propertyPath: m_Name
       value: Barnacle6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733086633466050118, guid: b1fa2bb5f8b795d4a9bed9151469bc8b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1fa2bb5f8b795d4a9bed9151469bc8b, type: 3}
@@ -107220,6 +107296,10 @@ PrefabInstance:
     - target: {fileID: 5620317177702435540, guid: 22fbe0ee99aa79840a9694147144af35, type: 3}
       propertyPath: m_Name
       value: ExitDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620317177702435544, guid: 22fbe0ee99aa79840a9694147144af35, type: 3}
+      propertyPath: levelToSwitchTo
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5620317177702435546, guid: 22fbe0ee99aa79840a9694147144af35, type: 3}
       propertyPath: m_RootOrder
