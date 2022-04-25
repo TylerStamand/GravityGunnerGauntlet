@@ -26,7 +26,7 @@ public class BossWall : MonoBehaviour {
         }
     }
  
-    void OnTriggerEnter2D(Collider2D collider) {
+    void OnTriggerStay2D(Collider2D collider) {
        
         if(electicityOn) {
             PlayerUnit playerUnit = collider.gameObject.GetComponent<PlayerUnit>();
