@@ -25,15 +25,21 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     }
 
     public virtual void TakeDamage(int damage, Vector3 knockbackVector) {
-        currentHealth--;
-        if(currentHealth <= 0) {
-            StartCoroutine(Die());
-        }
-        else {
-            if(animator != null) {
-                animator.SetTrigger("hit");
+        if(!dead) {
+            currentHealth--;
+            if (currentHealth <= 0)
+            {
+                StartCoroutine(Die());
+            }
+            else
+            {
+                if (animator != null)
+                {
+                    animator.SetTrigger("hit");
+                }
             }
         }
+       
     }
 
     IEnumerator Die() {
