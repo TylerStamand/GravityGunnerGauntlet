@@ -12,4 +12,9 @@ public class SlidingDoor : MonoBehaviour
     public void Activate() {
         animator.SetBool("OpenDoor", true);
     }
+
+    public void Deactivate()
+    {
+        animator.SetBool("OpenDoor", false);
+    }
 }
