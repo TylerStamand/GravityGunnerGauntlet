@@ -8,6 +8,7 @@ public class Ranged : Enemy
     [SerializeField] float attackCoolDown = 2;
     [SerializeField] float rangeRadius = 1;
     [SerializeField] LayerMask playerLayer;
+    [SerializeField] int meleeDamage = 1;
 
     float timeSinceLastShoot;
 
@@ -47,5 +48,15 @@ public class Ranged : Enemy
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, rangeRadius);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        PlayerUnit player = collision.gameObject.GetComponent<PlayerUnit>();
+
+        if (player != null)
+        {
+            player.TakeDamage(meleeDamage, transform.position - collision.transform.position);
+        }
     }
 }

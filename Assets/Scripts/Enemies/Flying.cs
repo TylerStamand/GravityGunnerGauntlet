@@ -8,7 +8,7 @@ public class Flying : Enemy
     [SerializeField] float moveSpeed = 1;
     [SerializeField] float attackCoolDown = 2;
     [SerializeField] LayerMask playerLayer;
-
+    [SerializeField] int damage = 1;
     float timeSinceLastAttack;
 
     protected override void Awake() {
@@ -49,5 +49,15 @@ public class Flying : Enemy
         Gizmos.color = Color.red;
         
         Gizmos.DrawWireSphere(transform.position, rangeRadius);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        PlayerUnit player = collision.gameObject.GetComponent<PlayerUnit>();
+
+        if (player != null)
+        {
+            player.TakeDamage(damage, transform.position - collision.transform.position);
+        }
     }
 }
