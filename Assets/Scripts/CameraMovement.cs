@@ -5,19 +5,22 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     PlayerUnit playerUnit;
+    new Rigidbody2D rigidbody2D;
 
     void Awake() {
         GameManager.Instance.PlayerSpawn += SetPlayer;
         playerUnit = FindObjectOfType<PlayerUnit>();
+        rigidbody2D = GetComponent<Rigidbody2D>();
         if(playerUnit != null) {
             SetPlayer(playerUnit);
         }
+
     }
 
-    void Update() {
-        if(playerUnit != null) {
+    void LateUpdate() {
+        if(playerUnit != null && rigidbody2D != null) {
             Vector3 playerPosition = playerUnit.transform.position;
-            transform.position = new Vector3(playerPosition.x, playerPosition.y, transform.position.z);
+            rigidbody2D.MovePosition(new Vector3(playerPosition.x, playerPosition.y, transform.position.z));
         }
 
     }

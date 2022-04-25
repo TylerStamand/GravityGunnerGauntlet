@@ -64,7 +64,6 @@ public class PlayerMovement : MonoBehaviour {
         
         CheckIfGrounded(); 
 
-        ApplySideMovement();
 
         timeSinceLastJump += Time.deltaTime;
         timeSinceLastGrav += Time.deltaTime;
@@ -77,7 +76,9 @@ public class PlayerMovement : MonoBehaviour {
 
     void FixedUpdate() {
         //Apply Gravity
+
         rigidBody.AddForce(transform.up * Physics.gravity.y * rigidBody.mass);
+        ApplySideMovement();
     }
 
     void OnDisable() {
@@ -96,18 +97,15 @@ public class PlayerMovement : MonoBehaviour {
         if(gravityState == Direction.Up || gravityState == Direction.Down) {
             value = playerControls.Player.XAxisMove.ReadValue<float>();
             
-            Vector3 delta = value * moveSpeed * Time.deltaTime * Vector2.right;
-            Vector3 newPosition = transform.position + delta;
+            rigidBody.velocity = new Vector2( value * moveSpeed, rigidBody.velocity.y);
 
-            transform.position = newPosition;
         }
         else {
             value = playerControls.Player.YAxisMove.ReadValue<float>();
 
-            Vector3 delta = value * moveSpeed * Time.deltaTime * Vector2.up;
-            Vector3 newPosition = transform.position + delta;
 
-            transform.position = newPosition;
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, value * moveSpeed);
+
         }
 
         //For flipping sprite based on direction
