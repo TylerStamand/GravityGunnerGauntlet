@@ -58,6 +58,7 @@ public class Boss : Enemy
             player = collider?.gameObject.GetComponent<PlayerUnit>();
             if(player != null) {
                 Charge(Direction.Up);
+                timeSinceLastCharge = 0;
             }else {
                 return;
             }
