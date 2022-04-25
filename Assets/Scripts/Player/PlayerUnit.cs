@@ -64,6 +64,11 @@ public class PlayerUnit : MonoBehaviour, IDamageable {
       
     }
 
+    public void AddHealth(int health) {
+
+        ChangeHealth(CurrentHealth + health);
+    }
+
 
     public void ResetPlayer() {
         playerData.ResetPlayerData();
