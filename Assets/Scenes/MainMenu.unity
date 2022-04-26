@@ -515,15 +515,15 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
     - target: {fileID: 5763832751482305316, guid: 910af3c16fa44054d918486315f31531, type: 3}
       propertyPath: m_fontColor.b
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5763832751482305316, guid: 910af3c16fa44054d918486315f31531, type: 3}
       propertyPath: m_fontColor.g
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5763832751482305316, guid: 910af3c16fa44054d918486315f31531, type: 3}
       propertyPath: m_fontColor.r
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5763832751482305316, guid: 910af3c16fa44054d918486315f31531, type: 3}
       propertyPath: m_sharedMaterial
