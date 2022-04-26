@@ -23,7 +23,7 @@ public class Melee : Enemy {
     float timeSinceLastJump;
 
 
-    Sequence tweens;
+    
 
     protected override void Awake() {
         base.Awake();
@@ -36,10 +36,10 @@ public class Melee : Enemy {
        
         if(moveRadius > 0) {
             transform.position = transform.position + transform.right * moveRadius;
-            tweens.Append(transform.DOMove(transform.position - transform.right * 2 * moveRadius, moveSpeed)
+            transform.DOMove(transform.position - transform.right * 2 * moveRadius, moveSpeed)
             .SetEase(Ease.Linear)
             .SetLoops(-1, LoopType.Yoyo)
-            .OnStepComplete(() => { spriteFliped = !spriteFliped; spriteRenderer.flipX = spriteFliped; }));
+            .OnStepComplete(() => { spriteFliped = !spriteFliped; spriteRenderer.flipX = spriteFliped; });
 
         }
         
@@ -74,11 +74,15 @@ public class Melee : Enemy {
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
-        PlayerUnit player = collision.gameObject.GetComponent<PlayerUnit>();
+        if(!dead) {
+            PlayerUnit player = collision.gameObject.GetComponent<PlayerUnit>();
 
-        if(player != null) {
-            player.TakeDamage(damage, transform.position - collision.transform.position );
+            if (player != null)
+            {
+                player.TakeDamage(damage, transform.position - collision.transform.position);
+            }
         }
+        
     }
 
     void OnDrawGizmosSelected() {

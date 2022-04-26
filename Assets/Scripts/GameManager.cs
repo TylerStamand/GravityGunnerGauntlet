@@ -89,6 +89,10 @@ public class GameManager : MonoBehaviour
                 PlayerUnit.ResetPlayer();
                 Debug.Log("Reset Player Data from gamescript");
             }
+            else {
+                PlayerUnit.EnableBoots();
+                PlayerUnit.EnableGravity();
+            }
 
         }
         

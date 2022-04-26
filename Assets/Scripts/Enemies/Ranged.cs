@@ -52,11 +52,14 @@ public class Ranged : Enemy
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        PlayerUnit player = collision.gameObject.GetComponent<PlayerUnit>();
+        if(!dead) {
+            PlayerUnit player = collision.gameObject.GetComponent<PlayerUnit>();
 
-        if (player != null)
-        {
-            player.TakeDamage(meleeDamage, transform.position - collision.transform.position);
+            if (player != null)
+            {
+                player.TakeDamage(meleeDamage, transform.position - collision.transform.position);
+            }
         }
+        
     }
 }
