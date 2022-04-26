@@ -11,10 +11,11 @@ public class ExitDoor : MonoBehaviour
     Animator animator;
 
     bool canOpen;
-
+    bool switchingLevel;
     void Awake() {
         animator = GetComponent<Animator>();  
         canOpen = false;
+        switchingLevel = false;
     }
 
     void Update() {
@@ -27,9 +28,10 @@ public class ExitDoor : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
-        if(canOpen) {
+        if(canOpen && !switchingLevel) {
+            Debug.Log("Changing level");
             GameManager.Instance.GoToLevel(levelToSwitchTo);
-            canOpen = false;
+            switchingLevel = true;
         }
     }
 

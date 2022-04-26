@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("setting player");
         if(PlayerUnit != null) {
             Debug.Log("Handling old player");
+            Destroy(PlayerUnit);
             PlayerUnit.OnDead -= HandlePlayerDeath;
         }
 
