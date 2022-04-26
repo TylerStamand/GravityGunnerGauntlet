@@ -2,15 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class HUDController : MonoBehaviour
 {
+    [Header("Hearts")]
     [SerializeField] GameObject heartPrefab;
     [SerializeField] GameObject heartParent;
 
     [Header("Grav Watch")]
     [SerializeField] Image gravWatch;
     [SerializeField] Color gravNotReadyColor;
+
+    [Header("Enemy Counter")]
+    [SerializeField] TextMeshProUGUI enemiesText;
 
     List<GameObject> hearts;
 
@@ -19,10 +25,20 @@ public class HUDController : MonoBehaviour
         GameManager.Instance.PlayerUnit.OnHealthChange += UpdateHearts;
         GameManager.Instance.PlayerUnit.OnGravStatusChange += UpdateGrav;
         GameManager.Instance.PlayerUnit.OnGravEnabled += EnableGravIcon;
+        GameManager.Instance.EnemyCountChange += UpdateEnemyCount;
         hearts = new List<GameObject>();
+
+        UpdateEnemyCount(GameManager.Instance.EnemyCount);
         UpdateHearts(GameManager.Instance.PlayerUnit.CurrentHealth);
         UpdateGrav(true);
         EnableGravIcon(GameManager.Instance.PlayerUnit.GravityEnabled);
+
+        if(SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 3) {
+            enemiesText.enabled = true;
+        }
+        else {
+            enemiesText.enabled = false;
+        }
     }
 
     void UpdateHearts(int health)
@@ -49,6 +65,10 @@ public class HUDController : MonoBehaviour
         else {
             gravWatch.color = gravNotReadyColor;
         }
+    }
+
+    void UpdateEnemyCount(int enemies) {
+        enemiesText.text = "Enemies: " + enemies;
     }
 
 

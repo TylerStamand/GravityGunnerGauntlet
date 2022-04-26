@@ -14,10 +14,11 @@ public class GameManager : MonoBehaviour
 
     private static GameManager _instance;
     
-
+    public event Action<int> EnemyCountChange;
     public event Action<PlayerUnit> PlayerSpawn;
     
     public bool AllEnemiesKilled;
+    public int EnemyCount  => levelEnemies.Count;
 
     bool HUDLoaded;
 
@@ -110,6 +111,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Enemies Set");
         levelEnemies = FindObjectsOfType<Enemy>().ToList<Enemy>();
         Debug.Log("Enemy count: " + levelEnemies.Count);
+        EnemyCountChange?.Invoke(levelEnemies.Count);
         foreach(Enemy enemy in levelEnemies) {
             enemy.OnDeath.AddListener(RemoveEnemyFromList);
         }
@@ -124,6 +126,7 @@ public class GameManager : MonoBehaviour
         
         levelEnemies.Remove(enemy);
         Debug.Log("Enemies left: " + levelEnemies.Count);
+        EnemyCountChange?.Invoke(levelEnemies.Count);
         if(levelEnemies.Count == 0) {
             AllEnemiesKilled = true;
         }
