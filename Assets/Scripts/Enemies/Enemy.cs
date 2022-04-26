@@ -42,7 +42,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
        
     }
 
-    IEnumerator Die() {
+    protected virtual IEnumerator Die() {
         if(!dead) {
             dead = true;
             OnDeath?.Invoke(this);

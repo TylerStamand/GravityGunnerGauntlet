@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Boss : Enemy
@@ -66,58 +67,77 @@ public class Boss : Enemy
 
         timeSinceLastCharge += Time.deltaTime;
         timeSinceLastShot += Time.deltaTime;
-
-        if(phase == 0) {
-            if (timeSinceLastCharge >= chargeCoolDown && !isCharging)
+        if(!dead) {
+            if (phase == 0)
             {
-                Direction playerGravityState = player.GetGravityState();
-                Charge(playerGravityState);
-                timeSinceLastCharge = 0;
-            }
-        }
-
-        else if(phase == 1) {
-            if(timeSinceLastCharge >= chargeCoolDown && !isCharging) {
-                Direction playerGravityState = player.GetGravityState();
-                Charge(playerGravityState);
-                timeSinceLastCharge = 0;
-            }
-            if(timeSinceLastShot >= shootCoolDown && !isCharging) {
-                weapon.transform.up = player.transform.position - weapon.transform.position;
-                weapon.Shoot();
-                timeSinceLastShot = 0;
+                if (timeSinceLastCharge >= chargeCoolDown && !isCharging)
+                {
+                    Direction playerGravityState = player.GetGravityState();
+                    Charge(playerGravityState);
+                    timeSinceLastCharge = 0;
+                }
             }
 
-        }
+            else if (phase == 1)
+            {
+                if (timeSinceLastCharge >= chargeCoolDown && !isCharging)
+                {
+                    Direction playerGravityState = player.GetGravityState();
+                    Charge(playerGravityState);
+                    timeSinceLastCharge = 0;
+                }
+                if (timeSinceLastShot >= shootCoolDown && !isCharging)
+                {
+                    weapon.transform.up = player.transform.position - weapon.transform.position;
+                    weapon.Shoot();
+                    timeSinceLastShot = 0;
+                }
 
-        else if(phase == 2) {
-            if(timeSinceLastCharge >= fastChargeCoolDown && !isCharging) {
-                Direction playerGravityState = player.GetGravityState();
-                Charge(playerGravityState);
-                timeSinceLastCharge = 0;
             }
-            if(timeSinceLastShot >= fastShootCoolDown && !isCharging) {
-                weapon.transform.up = player.transform.position - weapon.transform.position;
-                weapon.Shoot();
-                timeSinceLastShot = 0;
+
+            else if (phase == 2)
+            {
+                if (timeSinceLastCharge >= fastChargeCoolDown && !isCharging)
+                {
+                    Direction playerGravityState = player.GetGravityState();
+                    Charge(playerGravityState);
+                    timeSinceLastCharge = 0;
+                }
+                if (timeSinceLastShot >= fastShootCoolDown && !isCharging)
+                {
+                    weapon.transform.up = player.transform.position - weapon.transform.position;
+                    weapon.Shoot();
+                    timeSinceLastShot = 0;
+                }
             }
         }
+       
     }
 
     void FixedUpdate() {
-        if(isCharging) {
-            rigidbody.velocity = transform.right * chargeVelocity;
-        }
-        if(isWalking) {
-            if(walkingDir == 0) {
-                rigidbody.velocity = transform.right * walkSpeed;
-            } else {
-                rigidbody.velocity = -transform.right * walkSpeed;
+        if(!dead) {
+            if (isCharging)
+            {
+                rigidbody.velocity = transform.right * chargeVelocity;
             }
-            
+            if (isWalking)
+            {
+                if (walkingDir == 0)
+                {
+                    rigidbody.velocity = transform.right * walkSpeed;
+                }
+                else
+                {
+                    rigidbody.velocity = -transform.right * walkSpeed;
+                }
+
+            }
         }
+      
         
     }
+
+    
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -228,6 +248,28 @@ public class Boss : Enemy
         }
         else if(currentHealth / (float)(maxHealth) < .66f) {
             phase = 1;
+        }
+
+    }
+
+    protected override IEnumerator Die()
+    {
+        if (!dead)
+        {
+            Debug.Log("Starting dead");
+            dead = true;
+            OnDeath?.Invoke(this);
+            if (animator != null)
+            {
+                Debug.Log("Setting dead");
+                animator.SetBool("dead", true);
+            }
+
+
+            yield return new WaitForSeconds(2);
+            GameManager.Instance.GoToLevel(5);
+            Destroy(gameObject);
+
         }
 
     }

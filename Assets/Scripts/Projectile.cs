@@ -32,6 +32,7 @@ public class Projectile : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D collision) {
         //check if object has IDamageable
         IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
+        Debug.Log(collision.gameObject.name);
         if(damageable != null) {
             damageable.TakeDamage(damage, transform.position - collision.transform.position);
             rigidbody.velocity = Vector2.zero;

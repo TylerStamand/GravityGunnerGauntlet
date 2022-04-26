@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 1923292965}
   - component: {fileID: 2022768815}
   - component: {fileID: 2022768816}
+  - component: {fileID: 7031739193202781693}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -188,7 +189,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 986071619215430030}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.2620246, y: 1.055966, z: 0}
+  m_LocalPosition: {x: -1.262, y: 0.888, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -258,7 +259,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 986071619215430030}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 0e28eb5d1dd2eb946bbba78839aad110, type: 2}
+  m_Material: {fileID: 6200000, guid: 87d2c38b7f167564bbb461592a6a7016, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -291,7 +292,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 0e28eb5d1dd2eb946bbba78839aad110, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -401,3 +402,25 @@ MonoBehaviour:
       m_Hash: 0
       m_Sprite: {fileID: 21300000, guid: dc87047fde79f384da196dfa8b3e0599, type: 3}
   m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 35d7d5ebcb1a1d845b99a2fbd096f696, type: 3}
+--- !u!68 &7031739193202781693
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986071619215430030}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 0e28eb5d1dd2eb946bbba78839aad110, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.51}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.337, y: 0}
+  - {x: 0.331, y: 0}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0

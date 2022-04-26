@@ -56,9 +56,9 @@ public class GameManager : MonoBehaviour
             HUDLoaded = false;
         }
         
-        SceneManager.LoadScene(levelNumber);
+        SceneManager.LoadSceneAsync(levelNumber);
         //IF LEVEL
-        if(levelNumber > 0 || levelNumber < 5) {
+        if(levelNumber > 0 && levelNumber < 5) {
             
             SceneManager.sceneLoaded += SetPlayer;
             SceneManager.sceneLoaded += SetEnemies;

@@ -17,7 +17,7 @@ public class CameraMovement : MonoBehaviour
 
     }
 
-    void LateUpdate() {
+    void FixedUpdate() {
         if(playerUnit != null && rigidbody2D != null) {
             Vector3 playerPosition = playerUnit.transform.position;
             rigidbody2D.MovePosition(new Vector3(playerPosition.x, playerPosition.y, transform.position.z));

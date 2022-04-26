@@ -1,4 +1,5 @@
-
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -19,7 +20,11 @@ public class Weapon : MonoBehaviour
         }
         GameObject parentTransform = transform.parent.gameObject;
         Projectile shot = Instantiate(projectilePrefab, transform.position, transform.rotation);
-        Physics2D.IgnoreCollision(shot.GetComponent<Collider2D>(), parentTransform.GetComponent<Collider2D>()); 
+        List<Collider2D> colliders = parentTransform.GetComponents<Collider2D>().ToList();
+        foreach (Collider2D collider in colliders) {
+            Physics2D.IgnoreCollision(shot.GetComponent<Collider2D>(), collider);
+        }
+       
        
     }
     
