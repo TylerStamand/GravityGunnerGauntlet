@@ -29,6 +29,7 @@ public class ExitDoor : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider) {
         if(canOpen) {
             GameManager.Instance.GoToLevel(levelToSwitchTo);
+            canOpen = false;
         }
     }
 
