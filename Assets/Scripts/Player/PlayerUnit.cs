@@ -19,7 +19,10 @@ public class PlayerUnit : MonoBehaviour, IDamageable {
 
     public event Action OnDead;
     public event Action<int> OnHealthChange;
+    public event Action<bool> OnGravEnabled;
     public event Action<bool> OnGravStatusChange;
+
+    public bool GravityEnabled => playerMovement.GravityEnabled;
 
     PlayerMovement playerMovement;
     SpriteLibrary spriteLibrary;
@@ -84,6 +87,7 @@ public class PlayerUnit : MonoBehaviour, IDamageable {
 
     public void EnableGravity() {
         playerMovement.GravityEnabled = true;
+        OnGravEnabled?.Invoke(true);
         spriteLibrary.spriteLibraryAsset = bootsAndGrav;
         playerData.GravityEnabled = true;
     }

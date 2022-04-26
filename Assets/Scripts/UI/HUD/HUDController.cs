@@ -18,9 +18,11 @@ public class HUDController : MonoBehaviour
     {
         GameManager.Instance.PlayerUnit.OnHealthChange += UpdateHearts;
         GameManager.Instance.PlayerUnit.OnGravStatusChange += UpdateGrav;
+        GameManager.Instance.PlayerUnit.OnGravEnabled += EnableGravIcon;
         hearts = new List<GameObject>();
         UpdateHearts(GameManager.Instance.PlayerUnit.CurrentHealth);
         UpdateGrav(true);
+        EnableGravIcon(GameManager.Instance.PlayerUnit.GravityEnabled);
     }
 
     void UpdateHearts(int health)
@@ -33,6 +35,10 @@ public class HUDController : MonoBehaviour
             heart.transform.SetParent(heartParent.transform);
             hearts.Add(heart);
         }
+    }
+
+    void EnableGravIcon(bool enable) {
+        gravWatch.enabled = enable;
     }
 
     void UpdateGrav(bool ready) {

@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour {
 
     [SerializeField] int damage = 1;
     [SerializeField] float moveSpeed = 1;
+    [SerializeField] AudioPlayer audioPlayer;
 
     Animator animator;
     bool hitGround = false;
@@ -15,6 +16,9 @@ public class Projectile : MonoBehaviour {
     new Rigidbody2D rigidbody;
 
     void Awake() {
+        if(audioPlayer != null) {
+            Instantiate(audioPlayer, transform.position, Quaternion.identity);
+        }
         animator = GetComponent<Animator>();
         collider = GetComponent<Collider2D>();
         rigidbody = GetComponent<Rigidbody2D>();

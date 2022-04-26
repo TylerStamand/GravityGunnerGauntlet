@@ -13,10 +13,13 @@ public abstract class PickUp : MonoBehaviour {
 
     float startY;
     bool moveUp; 
+    bool used;
+
     void Awake() {
         GetComponent<Collider2D>().isTrigger = true;
         startY = transform.position.y;
         moveUp = true;
+        used = false;
     }
     void Update() {
         AnimationUpdate();
@@ -24,7 +27,8 @@ public abstract class PickUp : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collider) {
         PlayerUnit playerUnit = collider.gameObject.GetComponent<PlayerUnit>();
-        if(playerUnit != null) {
+        if(playerUnit != null  && !used) {
+            used = true;
             OnPickUp?.Invoke();
             PickUpAction(playerUnit);
             Destroy(gameObject);
