@@ -19,7 +19,7 @@ public class Timer : MonoBehaviour
     private void Start()
     {
         // Starts the timer automatically
-        timerIsRunning = true;
+        timerIsRunning = false;
 
         // Set the timer to 0
         timeInSeconds = 0;
@@ -27,6 +27,31 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
+        // Create a temporary reference to the current scene.
+        Scene currentScene = SceneManager.GetActiveScene();
+        // Retrieve the name of this scene.
+        string sceneName = currentScene.name;
+
+        // If we are on the main menu, reset the time
+        if (sceneName == "MainMenu")
+            timeInSeconds = 0;
+
+        // Check if we need to start or stop the time
+        if (timerIsRunning == false && (sceneName == "Level1" || sceneName == "Level2" || sceneName == "LevelBoss") && GetComponent<Canvas>().enabled == false)
+        {
+            startTime();
+            GetComponent<Canvas>().enabled = true;
+        }
+        else if(timerIsRunning == true && sceneName == "WinScreen")
+        {
+            stopTime();
+        }
+        else if(sceneName == "MainMenu" || sceneName == "TutorialLevel")
+        {
+            GetComponent<Canvas>().enabled = false;
+            stopTime();
+        }
+
         // If the times is running
         if (timerIsRunning)
         {
