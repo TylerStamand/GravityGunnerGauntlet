@@ -149,7 +149,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 11050420}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 55.4, y: 0, z: 0}
+  m_LocalPosition: {x: 55.6, y: 1.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -176,11 +176,12 @@ MonoBehaviour:
     sentences:
     - This the the Gravity Watch, with it you will be able to manipulate gravity
       in any cardinal direction.
+    - Keep in mind that it only switches your gravity, we haven't completed the prototype
+      that can switch everythings gravity... yet.
     - To use it, press the "arrow key" in the direction you want gravity to switch
       to.
-    - Keep in mind that it only switches your gravity, we haven't completed
-    - the prototype that can switch everythings gravity... yet.
-    - Proceed to the next chamber to test it out before we throw you out there.
+    - Proceed to the next chamber to test it out by activating the exit's unlock
+      switch so that you be begin the recovery operation of the Power Core.
 --- !u!61 &11050423
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -205,7 +206,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.95, y: 3.65}
   m_EdgeRadius: 0
 --- !u!1 &37131050
 GameObject:
@@ -903,8 +904,18 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
     sentences:
-    - 'Good morning, you''ve been asleep for ERROR: interger overflow years.'
+    - Initiating Wakey Wakey Protocol...
+    - 'Good morning, you''ve been asleep for ERROR: Interger overflow years.'
     - Would you like a coffee?
+    - You have been woken up because there has been a security breach in the Power
+      Core chamber.
+    - My sensors indicate that the Power Core has been taken and must be retrieved
+      or the other cryopods in this facility will no longer sustain it's inhabitants.
+    - To ensure it isn't stolen again, you are tasked with eliminating all enemies
+      you encounter while you search for the Power Core.
+    - 'Since it has been ERROR: Interger overflow years since you last utilized your
+      combat gear, I will give you a quick training to refresh you.'
+    - Proceed to the next chamber to begin the training.
 --- !u!61 &333970257
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -929,7 +940,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.8, y: 4.26}
   m_EdgeRadius: 0
 --- !u!4 &333970258
 Transform:
@@ -939,7 +950,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 333970255}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.46, y: 1.63, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -972,7 +983,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 435391286}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.48, y: 0, z: 0}
+  m_LocalPosition: {x: 19.78, y: 0.99, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -997,10 +1008,11 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     sentences:
-    - Feast your eyes on the scientist's newest invention.
-    - 'The Bang Boots 3.0, now with recoil compensators to prevent '
-    - the users legs from shattering...we think.
-    - Press "space" to fire a concentrated blast of energy that will launch you upwards.
+    - Feast your eyes on the scientist's newest version of your old weapon.
+    - The Bang Boots 3.0, now with recoil compensators to prevent the users legs
+      from shattering...we think.
+    - Press "space" to fire a concentrated blast of energy that will launch you upwards
+      and damage anything that comes in contact with the blast.
     - Proceed to the next chamber and defeat the hologram we have set to begin the
       first test of these boots.
 --- !u!61 &435391289
@@ -1027,7 +1039,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.13, y: 3.09}
   m_EdgeRadius: 0
 --- !u!1 &474793087
 GameObject:
@@ -30652,12 +30664,14 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
     sentences:
-    - Nice job destroying that hologram
+    - Nice job destroying that hologram!
     - Now on a scale of 1 to 10 with a 1 being not at all and a 10 being extremely,
       how broken are your legs?
+    - ...
     - I will take your silence as a 1, thank you for your input and cooperance for
       this test.
-    - Proceed to the next chamber for the next test.
+    - Proceed to the next chamber to test out the newest invention the scientists
+      have made while you were in cryosleep.
 --- !u!1 &827431060
 GameObject:
   m_ObjectHideFlags: 0
@@ -34191,8 +34205,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -129, y: 26.800014}
-  m_SizeDelta: {x: -320, y: -160}
+  m_AnchoredPosition: {x: 1.999939, y: 26.800018}
+  m_SizeDelta: {x: -57.99988, y: -160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1695932813
 MonoBehaviour:
