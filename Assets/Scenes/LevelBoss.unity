@@ -1407,8 +1407,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -129, y: 26.800014}
-  m_SizeDelta: {x: -320, y: -160}
+  m_AnchoredPosition: {x: 2, y: 26.800014}
+  m_SizeDelta: {x: -58, y: -160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1010953547
 CanvasRenderer:
@@ -1921,10 +1921,11 @@ MonoBehaviour:
           m_CallState: 2
     sentences:
     - So, you're the one taking out all of my minions?
-    - What's that? You want me to give back your power core?
+    - What's that? You want me to give back your Power Core?
     - Fat chance. Like I'd just give it to you after the damage you've cause to me
       and my crew.
-    - If you want this core, you're gonna have to pry it from my cold dead hand.
+    - If you want this Power Core, you're gonna have to pry it from my cold dead
+      hand.
     - Enter my chamber and we'll see just how strong you really are.
 --- !u!61 &1132425707
 BoxCollider2D:
