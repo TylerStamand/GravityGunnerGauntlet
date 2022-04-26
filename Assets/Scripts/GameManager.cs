@@ -52,7 +52,9 @@ public class GameManager : MonoBehaviour
     // Used to change level
     public void GoToLevel(int levelNumber)
     {
+        Debug.Log("Switching level");
         if(HUDLoaded == true) {
+            Debug.Log("Unloading HUD");
             SceneManager.UnloadSceneAsync("HUD");
             HUDLoaded = false;
         }
@@ -74,7 +76,9 @@ public class GameManager : MonoBehaviour
 
 
     void SetPlayer(Scene scene, LoadSceneMode mode) {
+        Debug.Log("setting player");
         if(PlayerUnit != null) {
+            Debug.Log("Handling old player");
             PlayerUnit.OnDead -= HandlePlayerDeath;
         }
 
