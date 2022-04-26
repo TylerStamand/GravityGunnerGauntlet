@@ -84,6 +84,10 @@ public class Melee : Enemy {
         }
         
     }
+    
+    void OnDestroy() {
+        transform.DOKill();
+    }
 
     void OnDrawGizmosSelected() {
         Vector3 leftBound;
